@@ -4,7 +4,8 @@ public class Recursion{
   *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
   */
   public static String reverse(String s){
-    return s;
+    if(s.length() <= 1) return s;
+    return reverse(s.substring(1)) + s.charAt(0);
   }
 
   /*
@@ -26,5 +27,5 @@ public class Recursion{
     //Hint: This is a wrapper method.
     return 0;
   }
-  
+
 }
