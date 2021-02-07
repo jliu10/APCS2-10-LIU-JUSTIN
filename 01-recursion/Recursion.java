@@ -16,6 +16,7 @@ public class Recursion{
   */
   public static long countNoDoubleLetterWords(int length,String word){
     //Hint: not a wrapper method, but you must call it starting with "" as your word.
+    if(length==0) return 1;
     return 0;
   }
 
