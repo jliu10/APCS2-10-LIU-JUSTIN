@@ -34,7 +34,10 @@ public class Recursion{
   *@return the approximate sqrt of n within a tolerance of 0.001%
   */
   public static double sqrt(double n){
-    //Hint: This is a wrapper method.
+    return sqrt(n, n/2)
+  }
+
+  public static double sqrt(double n, double g){
     return 0;
   }
 
