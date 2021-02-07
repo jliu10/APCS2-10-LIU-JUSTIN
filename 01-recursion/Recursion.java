@@ -29,6 +29,10 @@ public class Recursion{
     return count;
   }
 
+  public static double percentDiff(int a, int b){
+    return Math.abs((a-b)/((a+b)/2));
+  }
+
   /*
   *@param n any non-negative value you want to take the sqrt of
   *@return the approximate sqrt of n within a tolerance of 0.001%
