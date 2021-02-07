@@ -30,7 +30,7 @@ public class Recursion{
   }
 
   public static double percentDiff(int a, int b){
-    return Math.abs((a-b)/((a+b)/2));
+    return Math.abs((a-b)/((a+b)/2))*100;
   }
 
   /*
@@ -42,6 +42,7 @@ public class Recursion{
   }
 
   public static double sqrt(double n, double g){
+    if(percentDiff(n,g)<=0.001) return g;
     return 0;
   }
 
