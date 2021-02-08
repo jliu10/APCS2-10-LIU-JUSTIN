@@ -30,6 +30,8 @@ public class Recursion{
   }
 
   public static double percentDiff(double a, double b){
+    if(a==b) return 0;
+    if(a==0 || b==0) return 200;
     return Math.abs((a-b)/((a+b)/2))*100;
   }
 
@@ -42,8 +44,9 @@ public class Recursion{
   }
 
   public static double sqrt(double n, double g){
-    if(percentDiff(n,g)<=0.001) return g;
-    return 0;
+    if(percentDiff(n,g*g)<=0.001) return g;
+    g=(n/g + g)/2;
+    return sqrt(n,g);
   }
 
 }
