@@ -29,7 +29,7 @@ public class Recursion{
     return count;
   }
 
-  public static double percentDiff(int a, int b){
+  public static double percentDiff(double a, double b){
     return Math.abs((a-b)/((a+b)/2))*100;
   }
 
@@ -38,7 +38,7 @@ public class Recursion{
   *@return the approximate sqrt of n within a tolerance of 0.001%
   */
   public static double sqrt(double n){
-    return sqrt(n, n/2)
+    return sqrt(n, n/2);
   }
 
   public static double sqrt(double n, double g){
