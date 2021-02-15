@@ -2,16 +2,15 @@ public class QueenBoard{
 
   private int[][]board;
 
+  public QueenBoard(int size){
+    board=new int[size][size];
+  }
+
   private boolean addQueen(int r, int c){
     return true;
   }
 
   private void removeQueen(int r, int c){
-
-  }
-
-
-  public QueenBoard(int size){
 
   }
 
