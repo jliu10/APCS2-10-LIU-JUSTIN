@@ -6,23 +6,29 @@ public class QueenBoard{
     board=new int[size][size];
   }
 
+  private void tally(int r, int c, int n){
+    for(int i=0; i<board.length; i++){
+      for(int j=c; j<board.length; j++){ //no need to look left
+        if((i==r || j==c || r+j==c+i) && (board[i][j]!=-1)) board[i][j]+=n;
+        //horiz, vert. diag, not queen
+      }
+    }
+  }
+
   private boolean addQueen(int r, int c){
     // if(r<board.length && c<board.length && board[r][c]!=-1){
     if(board[r][c]!=-1){
       board[r][c]=-1;
-      for(int i=0; i<board.length; i++){
-        for(int j=c; j<board.length; j++){ //no need to look left
-          if((i==r || j==c || r+j==c+i) && (board[i][j]!=-1)) board[i][j]++;
-          //horiz, vert. diag, not queen aka this square
-        }
-      }
+      tally(r,c,1);
       return true;
     }
     return false;
   }
 
   private void removeQueen(int r, int c){
-
+    if(board[r][c]==-1){
+      board[r][c]=0;
+      tally(r,c,-1);
   }
 
   /**
