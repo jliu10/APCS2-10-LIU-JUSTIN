@@ -10,6 +10,12 @@ public class QueenBoard{
     // if(r<board.length && c<board.length && board[r][c]!=-1){
     if(board[r][c]!=-1){
       board[r][c]=-1;
+      for(int i=0; i<board.length; i++){
+        for(int j=c; j<board.length; j++){ //no need to look left
+          if((i==r || j==c || r+j==c+i) && (board[i][j]!=-1)) board[i][j]++;
+          //horiz, vert. diag, not queen aka this square
+        }
+      }
       return true;
     }
     return false;
