@@ -7,7 +7,12 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
-    return true;
+    // if(r<board.length && c<board.length && board[r][c]!=-1){
+    if(board[r][c]!=-1){
+      board[r][c]=-1;
+      return true;
+    }
+    return false;
   }
 
   private void removeQueen(int r, int c){
