@@ -35,6 +35,13 @@ public class QueenBoard{
     return "";
   }
 
+  public boolean isEmpty(){
+    for(int i=0; i<board.length; i++){
+      for(int j=0; j<board.length; j++) if(board[i][j]!=0) return false;
+    }
+    return true;
+  }
+
   /**Find the first solution configuration possible for this size board. Start by placing
   *  the 1st queen in the top left corner, and each new queen in the next COLUMN. When backtracking
   *  move the previous queen down to the next valid space. This means everyone will generate the same
