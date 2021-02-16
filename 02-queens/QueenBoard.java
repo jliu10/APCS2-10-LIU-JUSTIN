@@ -27,8 +27,9 @@ public class QueenBoard{
 
   private void removeQueen(int r, int c){
     if(board[r][c]==-1){
-      board[r][c]=0;
       tally(r,c,-1);
+      board[r][c]=0;
+    }
   }
 
   /**
@@ -44,7 +45,16 @@ public class QueenBoard{
   *excludes the character up to the *)
   */
   public String toString(){
-    return "";
+    String s="";
+    for(int i=0; i<board.length; i++){
+      for(int j=0; j<board.length; j++){
+        if(board[i][j]==-1) s+="Q";
+        else s+="_";
+        if(j==board.length-1) s+="\n";
+        else s+=" ";
+      }
+    }
+    return s;
   }
 
   public boolean isEmpty(){
