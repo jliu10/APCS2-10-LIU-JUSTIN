@@ -73,8 +73,13 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
+    return false;
+  }
+
+  public boolean solve(int n){
     if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
-    return true;
+
+    return false;
   }
 
   /**Find all possible solutions to this size board.
@@ -82,6 +87,10 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
+    return 0;
+  }
+
+  public int countSolutions(int n){
     if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
     return 0;
   }
