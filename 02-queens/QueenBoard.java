@@ -73,6 +73,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
+    if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
     return true;
   }
 
@@ -81,6 +82,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
+    if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
     return 0;
   }
 
