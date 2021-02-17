@@ -77,9 +77,43 @@ public class QueenBoard{
   }
 
   public boolean solve(int r, int c, int q){ // row, column, queens
-    if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
-    if(c>=board.length){ // exceeds index of columns on board
+    if(!isEmpty()) throw new IllegalStateException("Board is not empty");
+    if(c>=board.length || c<0){ // column not on board
       if(q==board.length) return true; // all n queens are placed
+    }
+    else{
+      if(r>=board.length) return false;
+      if(board[r][c]==0){
+        addQueen(r,c);
+        if(solve(0,c+1,q+1)) return true;
+        else{
+          removeQueen(r,c);
+          solve(r+1,c,q-1);
+        }
+      }
+      else{
+        solve(r+1,c,q);
+      }
+
+      /*
+      if(board[r][c]==0){
+        addQueen(r,c);
+        solve(0,c+1,q+1);
+      }
+      else{
+        if(r<board.length){
+          // r++;
+          solve(r+1,c,q);
+        }
+        else{
+          c--;
+          removeQueen(,c);
+          q--;
+
+        }
+      }
+      // solve(r,c,q);
+      */
     }
     return false;
   }
@@ -93,7 +127,7 @@ public class QueenBoard{
   }
 
   public int countSolutions(int n){
-    if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
+    if(!isEmpty()) throw new IllegalStateException("Board is not empty");
     return 0;
   }
 
