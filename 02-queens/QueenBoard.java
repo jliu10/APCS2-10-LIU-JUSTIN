@@ -78,7 +78,9 @@ public class QueenBoard{
 
   public boolean solve(int r, int c, int q){ // row, column, queens
     if(!isEmpty()) throw new IllegalStateException("Cannot solve non-empty board");
-
+    if(c>=board.length){ // exceeds index of columns on board
+      if(q==board.length) return true; // all n queens are placed
+    }
     return false;
   }
 
