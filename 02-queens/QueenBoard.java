@@ -93,7 +93,7 @@ public class QueenBoard{
         else{
           removeQueen(r,c);
           q--;
-          solve(r+1,c,q);
+          if(solve(r+1,c,q)) return true;
         }
       }
       else{
