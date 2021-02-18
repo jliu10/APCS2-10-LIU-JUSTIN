@@ -78,11 +78,11 @@ public class QueenBoard{
 
   public boolean solve(int r, int c, int q){ // row, column, queens
     if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
-    System.out.println(this.toString());
-    System.out.println(r+" "+c+" "+q);
-    System.out.println();
+    // System.out.println(this.toString());
+    // System.out.println(r+" "+c+" "+q);
+    // System.out.println();
     // if(c>=board.length || c<0){ // column not on board
-      if(q==board.length) return true; // all n queens are placed
+    if(q==board.length) return true; // all n queens are placed
     // }
     else{
       if(r>=board.length) return false;
@@ -97,28 +97,8 @@ public class QueenBoard{
         }
       }
       else{
-        solve(r+1,c,q);
+        if(solve(r+1,c,q)) return true;
       }
-
-      /*
-      if(board[r][c]==0){
-        addQueen(r,c);
-        solve(0,c+1,q+1);
-      }
-      else{
-        if(r<board.length){
-          // r++;
-          solve(r+1,c,q);
-        }
-        else{
-          c--;
-          removeQueen(,c);
-          q--;
-
-        }
-      }
-      // solve(r,c,q);
-      */
     }
     return false;
   }
