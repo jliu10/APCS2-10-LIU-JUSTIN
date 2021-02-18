@@ -102,12 +102,13 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
-    return 0;
+    return countSolutions(0,0,0,0);
   }
 
-  public int countSolutions(int n){
+  public int countSolutions(int r, int c, int q, int count){
     if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
-    return 0;
+    if(r>=board.length && c==0) return 0;
+    return count;
   }
 
 }
