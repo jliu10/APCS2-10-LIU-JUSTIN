@@ -16,7 +16,6 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
-    // if(r<board.length && c<board.length && board[r][c]!=-1){
     if(board[r][c]!=-1){
       board[r][c]=-1;
       tally(r,c,1);
@@ -78,12 +77,7 @@ public class QueenBoard{
 
   public boolean solve(int r, int c, int q){ // row, column, queens
     if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
-    // System.out.println(this.toString());
-    // System.out.println(r+" "+c+" "+q);
-    // System.out.println();
-    // if(c>=board.length || c<0){ // column not on board
     if(q==board.length) return true; // all n queens are placed
-    // }
     else{
       if(r>=board.length) return false;
       if(board[r][c]==0){
