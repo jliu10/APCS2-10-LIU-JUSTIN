@@ -106,7 +106,7 @@ public class QueenBoard{
   }
 
   public int countSolutions(int n){
-    if(!isEmpty()) throw new IllegalStateException("Board is not empty");
+    if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
     return 0;
   }
 
