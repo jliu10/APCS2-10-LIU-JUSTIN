@@ -9,7 +9,7 @@ public class QueenBoard{
   private void tally(int r, int c, int n){
     for(int i=0; i<board.length; i++){
       for(int j=c; j<board.length; j++){ //no need to look left
-        if((i==r || j==c || r+j==c+i) && (board[i][j]!=-1)) board[i][j]+=n;
+        if((i==r || j==c || Math.abs(r-i)==Math.abs(c-j)) && (board[i][j]!=-1)) board[i][j]+=n;
         //horiz, vert. diag, not queen
       }
     }
@@ -78,17 +78,22 @@ public class QueenBoard{
 
   public boolean solve(int r, int c, int q){ // row, column, queens
     if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
-    if(c>=board.length || c<0){ // column not on board
+    System.out.println(this.toString());
+    System.out.println(r+" "+c+" "+q);
+    System.out.println();
+    // if(c>=board.length || c<0){ // column not on board
       if(q==board.length) return true; // all n queens are placed
-    }
+    // }
     else{
       if(r>=board.length) return false;
       if(board[r][c]==0){
         addQueen(r,c);
-        if(solve(0,c+1,q+1)) return true;
+        q++;
+        if(solve(0,c+1,q)) return true;
         else{
           removeQueen(r,c);
-          solve(r+1,c,q-1);
+          q--;
+          solve(r+1,c,q);
         }
       }
       else{
