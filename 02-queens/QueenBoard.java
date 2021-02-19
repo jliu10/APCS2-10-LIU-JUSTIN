@@ -112,29 +112,18 @@ public class QueenBoard{
     // System.out.println(this);
     // System.out.println("R"+r+" C"+c+" Q"+q);
     int count=0;
-    // System.out.println(count);
     if(q==board.length) return 1; // all n queens are placed
     if(r>=board.length) return 0;
     if(r<board.length || c>0){
       if(board[r][c]==0){
         addQueen(r,c);
         q++;
-        // if(countSolutions(0,c+1,q)>0){
         count+=countSolutions(0,c+1,q);
-          // System.out.println(count);
-        // }
-
         removeQueen(r,c);
         q--;
         count+=countSolutions(r+1,c,q);
-          // System.out.println(count);
-
       }
-      else{
-        count+=countSolutions(r+1,c,q);
-        // System.out.println(count);
-      }
-
+      else count+=countSolutions(r+1,c,q);
     }
     return count;
   }
