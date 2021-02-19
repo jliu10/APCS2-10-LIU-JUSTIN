@@ -80,21 +80,17 @@ public class QueenBoard{
     // System.out.println(this);
     // System.out.println("R"+r+" C"+c+" Q"+q);
     if(q==board.length) return true; // all n queens are placed
-    else{
-      if(r>=board.length) return false;
-      if(board[r][c]==0){
-        addQueen(r,c);
-        q++;
-        if(solve(0,c+1,q)) return true;
-        else{
-          removeQueen(r,c);
-          q--;
-          if(solve(r+1,c,q)) return true;
-        }
-      }
-      else{
+    if(r>=board.length) return false;
+    if(board[r][c]==0){
+      addQueen(r,c);
+      q++;
+      if(solve(0,c+1,q)) return true;
+        removeQueen(r,c);
+        q--;
         if(solve(r+1,c,q)) return true;
-      }
+    }
+    else{
+      if(solve(r+1,c,q)) return true;
     }
     return false;
   }
