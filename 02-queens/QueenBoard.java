@@ -77,6 +77,8 @@ public class QueenBoard{
 
   public boolean solve(int r, int c, int q){ // row, column, queens
     if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
+    // System.out.println(this);
+    // System.out.println("R"+r+" C"+c+" Q"+q);
     if(q==board.length) return true; // all n queens are placed
     else{
       if(r>=board.length) return false;
@@ -102,12 +104,38 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
-    return countSolutions(0,0,0,0);
+    return countSolutions(0,0,0);
   }
 
-  public int countSolutions(int r, int c, int q, int count){
+  public int countSolutions(int r, int c, int q){
     if((r==0 && c==0) && !isEmpty()) throw new IllegalStateException("Board is not empty");
-    if(r>=board.length && c==0) return 0;
+    // System.out.println(this);
+    // System.out.println("R"+r+" C"+c+" Q"+q);
+    int count=0;
+    // System.out.println(count);
+    if(q==board.length) return 1; // all n queens are placed
+    if(r>=board.length) return 0;
+    if(r<board.length || c>0){
+      if(board[r][c]==0){
+        addQueen(r,c);
+        q++;
+        // if(countSolutions(0,c+1,q)>0){
+        count+=countSolutions(0,c+1,q);
+          // System.out.println(count);
+        // }
+
+        removeQueen(r,c);
+        q--;
+        count+=countSolutions(r+1,c,q);
+          // System.out.println(count);
+
+      }
+      else{
+        count+=countSolutions(r+1,c,q);
+        // System.out.println(count);
+      }
+
+    }
     return count;
   }
 
