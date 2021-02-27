@@ -95,12 +95,12 @@ public class Maze{
     return s;
   }
 
-  private boolean go(int x, int y, int direction){
+  private boolean go(int r, int c, int direction){
     // if space in direction is empty, go and drop an @
     return false;
   }
 
-  private void back(int x, int y, int direction){
+  private void back(int r, int c, int direction){
     // back, remove @, and drop a .
   }
 
@@ -118,7 +118,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int x, int y, int direction){ //you can add more parameters since this is private
+  private int solve(int r, int c, int direction){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
       if(animate){
           gotoTop();
