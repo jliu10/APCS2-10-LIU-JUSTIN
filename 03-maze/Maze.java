@@ -21,21 +21,14 @@ public class Maze{
   */
   public Maze(String filename) throws FileNotFoundException{
     File text=new File(filename);
-    int r=0;
-    int c=0;
+    ArrayList<char[]> x=new ArrayList<char[]>();
     Scanner inf=new Scanner(text);
     while(inf.hasNextLine()){
-      String line = inf.nextLine();
-      r++;
-      if(c==0) c=line.length();
+      x.add(inf.nextLine().toCharArray());
     }
-
-    maze=new char[r][c];
-
-    Scanner inf1=new Scanner(text);
-    for(int i=0; i<r; i++){
-      String line=inf1.nextLine();
-      for(int j=0; j<c; j++) maze[i][j]=line.charAt(j);
+    maze=new char[x.size()][];
+    for(int i=0; i<maze.length; i++){
+      maze[i]=x.get(i);;
     }
   }
 
