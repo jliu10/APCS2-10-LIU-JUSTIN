@@ -57,7 +57,14 @@ public class Maze{
    It should look like the text file with some characters replaced.
   */
   public String toString(){
-          return "WRITE THIS METHOD";
+    String s="";
+    for(int i=0; i<maze.length; i++){
+      for(int j=0; j<maze[i].length; j++){
+        s+=maze[i][j];
+      }
+      if(i<maze.length-1) s+="\n";
+    }
+    return s;
   }
 
   /*Wrapper Solve Function returns the helper function
