@@ -81,6 +81,28 @@ public class Maze{
           return 0;
   }
 
+  private int[] findS(){
+    int[] s=new int[2];
+    for(int i=0; i<maze.length; i++){
+      for(int j=0; j<maze[i].length; j++){
+        if(maze[i][j]=='S'){
+          s[0]=i;
+          s[1]=j;
+        }
+      }
+    }
+    return s
+  }
+
+  private boolean go(int x, int y, int direction){
+    // if space in direction is empty, go and drop an @
+    return false;
+  }
+
+  private void back(int x, int y, int direction){
+    // back, remove @, and drop a .
+  }
+
   /*
     Recursive Solve function:
 
@@ -95,7 +117,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int row, int col){ //you can add more parameters since this is private
+  private int solve(int x, int y, int direction){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
       if(animate){
           gotoTop();
