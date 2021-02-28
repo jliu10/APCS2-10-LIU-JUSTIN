@@ -99,28 +99,28 @@ public class Maze{
     return s;
   }
 
-  private boolean go(int r, int c, int dir){
+  private boolean go(int r, int c, int dir, char ch){
     // if space in direction is empty, go and drop an @
     if(dir==0){ // up
-      if(r>0) if(maze[r-1][c]==' ' || maze[r-1][c]=='E'){
+      if(r>0) if(maze[r-1][c]==ch){
         maze[r][c]='@';
         return true;
       }
     }
     else if(dir==1){ // right
-      if(c<cols-1) if(maze[r][c+1]==' ' || maze[r][c+1]=='E'){
+      if(c<cols-1) if(maze[r][c+1]==ch){
         maze[r][c]='@';
         return true;
       }
     }
     else if(dir==2){ // down
-      if(r<rows-1) if(maze[r+1][c]==' ' || maze[r+1][c]=='E'){
+      if(r<rows-1) if(maze[r+1][c]==ch){
         maze[r][c]='@';
         return true;
       }
     }
     else if(dir==3){ // left
-      if(c>0) if(maze[r][c-1]==' ' || maze[r][c-1]=='E'){
+      if(c>0) if(maze[r][c-1]==ch){
         maze[r][c]='@';
         return true;
       }
@@ -182,23 +182,28 @@ public class Maze{
 
       //COMPLETE SOLVE
       // int steps=0;
-      if(maze[r][c]=='E') return 1;
+      if(go(r,c,dir,'E')) return 0;
+      //if(maze[r][c]=='E') return 0;
       else{
         if(dir>=4) dir=0;
-        if(go(r,c,dir)){
-          if(dir==0) return 1+solve(r-1,c,dir,0);
-          if(dir==1) return 1+solve(r,c+1,dir,0);
-          if(dir==2) return 1+solve(r+1,c,dir,0);
-          if(dir==3) return 1+solve(r,c-1,dir,0);
+        if(go(r,c,dir,' ')){
+          if(dir==0) r--;// return 1+solve(r-1,c,dir,0);
+          if(dir==1) c++;// return 1+solve(r,c+1,dir,0);
+          if(dir==2) r++;// return 1+solve(r+1,c,dir,0);
+          if(dir==3) c--;// return 1+solve(r,c-1,dir,0);
+          return 1+solve(r,c,dir,0);
         }
-        if(adir<4){
-          solve(r,c,dir+1,adir+1);
-        }
-        if(back(r,c,dir)){
-          if(dir==0) return solve(r+1,c,dir,0)-1;
-          if(dir==1) return solve(r,c-1,dir,0)-1;
-          if(dir==2) return solve(r-1,c,dir,0)-1;
-          if(dir==3) return solve(r,c+1,dir,0)-1;
+        else{ //
+          if(adir<4){
+            solve(r,c,dir+1,adir+1);
+          }
+          if(back(r,c,dir)){
+            if(dir==0) r++;// return solve(r+1,c,dir,0)-1;
+            if(dir==1) c--;// return solve(r,c-1,dir,0)-1;
+            if(dir==2) r--;// return solve(r-1,c,dir,0)-1;
+            if(dir==3) c++;// return solve(r,c+1,dir,0)-1;
+            return solve(r,c,dir,0);
+          }
         }
       }
 
