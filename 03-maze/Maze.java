@@ -4,6 +4,8 @@ import java.io.*;
 public class Maze{
 
   private char[][]maze;
+  private int rows;
+  private int cols;
   private boolean animate;//false by default
 
   /*Constructor loads a maze text file, and sets animate to false by default.
@@ -30,6 +32,8 @@ public class Maze{
     for(int i=0; i<maze.length; i++){
       maze[i]=x.get(i);;
     }
+    rows=maze.length;
+    cols=maze[0].length;
   }
 
   private void wait(int millis){
@@ -84,8 +88,8 @@ public class Maze{
 
   private int[] findS(){
     int[] s=new int[2];
-    for(int i=0; i<maze.length; i++){
-      for(int j=0; j<maze[i].length; j++){
+    for(int i=0; i<rows; i++){
+      for(int j=0; j<cols; j++){
         if(maze[i][j]=='S'){
           s[0]=i;
           s[1]=j;
@@ -95,12 +99,36 @@ public class Maze{
     return s;
   }
 
-  private boolean go(int r, int c, int direction){
+  private boolean go(int r, int c, int dir){
     // if space in direction is empty, go and drop an @
+    if(dir==0){ // up
+      if(r>0) if(maze[r-1][c]==' '){
+        maze[r][c]='@';
+        return true;
+      }
+    }
+    else if(dir==1){ // right
+      if(c<cols-1) if(maze[r][c+1]==' '){
+        maze[r][c]='@';
+        return true;
+      }
+    }
+    else if(dir==2){ // down
+      if(r<rows-1) if(maze[r+1][c]==' '){
+        maze[r][c]='@';
+        return true;
+      }
+    }
+    else if(dir==3){ // left
+      if(c>0) if(maze[r][c-1]==' '){
+        maze[r][c]='@';
+        return true;
+      }
+    }
     return false;
   }
 
-  private void back(int r, int c, int direction){
+  private void back(int r, int c, int dir){
     // back, remove @, and drop a .
   }
 
@@ -118,7 +146,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int r, int c, int direction){ //you can add more parameters since this is private
+  private int solve(int r, int c, int dir){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
       if(animate){
           gotoTop();
@@ -127,6 +155,7 @@ public class Maze{
       }
 
       //COMPLETE SOLVE
+      // int steps=0;
       return -1; //so it compiles
   }
 }
