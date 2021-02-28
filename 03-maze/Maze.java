@@ -102,25 +102,25 @@ public class Maze{
   private boolean go(int r, int c, int dir){
     // if space in direction is empty, go and drop an @
     if(dir==0){ // up
-      if(r>0) if(maze[r-1][c]==' '){
+      if(r>0) if(maze[r-1][c]==' ' || maze[r-1][c]=='E'){
         maze[r][c]='@';
         return true;
       }
     }
     else if(dir==1){ // right
-      if(c<cols-1) if(maze[r][c+1]==' '){
+      if(c<cols-1) if(maze[r][c+1]==' ' || maze[r][c+1]=='E'){
         maze[r][c]='@';
         return true;
       }
     }
     else if(dir==2){ // down
-      if(r<rows-1) if(maze[r+1][c]==' '){
+      if(r<rows-1) if(maze[r+1][c]==' ' || maze[r+1][c]=='E'){
         maze[r][c]='@';
         return true;
       }
     }
     else if(dir==3){ // left
-      if(c>0) if(maze[r][c-1]==' '){
+      if(c>0) if(maze[r][c-1]==' ' || maze[r][c-1]=='E'){
         maze[r][c]='@';
         return true;
       }
