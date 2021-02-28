@@ -83,7 +83,7 @@ public class Maze{
           //start solving at the location of the s.
           //return solve(???,???);
           int[] s=findS();
-          return solve(s[0],s[1],0);
+          return solve(s[0],s[1],0,0,0);
   }
 
   private int[] findS(){
@@ -128,24 +128,35 @@ public class Maze{
     return false;
   }
 
-/*
-  private void back(int r, int c, int dir){
+  private boolean back(int r, int c, int dir){
     // back, remove @, and drop a .
     // dirs are opposite of go
     if(dir==0){ // down
-
+      if(r<rows-1) if(maze[r+1][c]=='@'){
+        maze[r][c]='.';
+        return true;
+      }
     }
     else if(dir==1){ // left
-
+      if(c>0) if(maze[r][c-1]=='@'){
+        maze[r][c]='.';
+        return true;
+      }
     }
     else if(dir==2){ // up
-
+      if(r>0) if(maze[r-1][c]=='@'){
+        maze[r][c]='.';
+        return true;
+      }
     }
     else if(dir==3){ // right
-
+      if(c<cols-1) if(maze[r][c+1]=='@'){
+        maze[r][c]='.';
+        return true;
+      }
     }
+    return false;
   }
-  */
 
   /*
     Recursive Solve function:
@@ -161,7 +172,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int r, int c, int dir){ //you can add more parameters since this is private
+  private int solve(int r, int c, int dir, int adir, int steps){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
       if(animate){
           gotoTop();
@@ -170,8 +181,32 @@ public class Maze{
       }
 
       //COMPLETE SOLVE
-      int steps=0;
+      // int steps=0;
       if(maze[r][c]=='E') return steps;
+
+      if(adir<4){
+        if(dir>=4) dir=0;
+        if(go(r,c,dir)){
+          steps++;
+          if(dir==0) solve(r-1,c,dir,0,steps);
+          if(dir==1) solve(r,c+1,dir,0,steps);
+          if(dir==2) solve(r+1,c,dir,0,steps);
+          if(dir==3) solve(r,c-1,dir,0,steps);
+        }
+        adir++;
+        steps+=solve(r,c,dir+1,adir,steps);
+      }
+
+      if(adir>=4){ // tried all dirs
+        if(back(r,c,dir)){
+          steps--;
+          if(dir==0) solve(r+1,c,dir,0,steps);
+          if(dir==1) solve(r,c-1,dir,0,steps);
+          if(dir==2) solve(r-1,c,dir,0,steps);
+          if(dir==3) solve(r,c+1,dir,0,steps);
+        }
+      }
+      // if ^ doesn't work return steps, and do steps+=solve(...)
       return -1; //so it compiles
   }
 }
