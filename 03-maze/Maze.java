@@ -128,9 +128,24 @@ public class Maze{
     return false;
   }
 
+/*
   private void back(int r, int c, int dir){
     // back, remove @, and drop a .
+    // dirs are opposite of go
+    if(dir==0){ // down
+
+    }
+    else if(dir==1){ // left
+
+    }
+    else if(dir==2){ // up
+
+    }
+    else if(dir==3){ // right
+
+    }
   }
+  */
 
   /*
     Recursive Solve function:
@@ -155,7 +170,8 @@ public class Maze{
       }
 
       //COMPLETE SOLVE
-      // int steps=0;
+      int steps=0;
+      if(maze[r][c]=='E') return steps;
       return -1; //so it compiles
   }
 }
