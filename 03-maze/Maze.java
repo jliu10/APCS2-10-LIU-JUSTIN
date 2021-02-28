@@ -181,7 +181,7 @@ public class Maze{
       }
 
       //COMPLETE SOLVE
-      int steps=0;
+      // int steps=0;
       if(maze[r][c]=='E') return 1;
       else{
         if(go(r,c,dir)){
@@ -196,7 +196,8 @@ public class Maze{
       }
 
       // if ^ doesn't work return steps, and do steps+=solve(...)
-      return steps; //so it compiles
+      // return steps;
+      return -1; //so it compiles
   }
 
 }
