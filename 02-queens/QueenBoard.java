@@ -85,9 +85,9 @@ public class QueenBoard{
       addQueen(r,c);
       q++;
       if(solve(0,c+1,q)) return true;
-        removeQueen(r,c);
-        q--;
-        if(solve(r+1,c,q)) return true;
+      removeQueen(r,c);
+      q--;
+      if(solve(r+1,c,q)) return true;
     }
     else{
       if(solve(r+1,c,q)) return true;
