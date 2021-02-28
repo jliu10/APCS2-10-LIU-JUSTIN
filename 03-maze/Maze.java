@@ -83,7 +83,7 @@ public class Maze{
           //start solving at the location of the s.
           //return solve(???,???);
           int[] s=findS();
-          return solve(s[0],s[1],0,0,0);
+          return solve(s[0],s[1],0,0);
   }
 
   private int[] findS(){
