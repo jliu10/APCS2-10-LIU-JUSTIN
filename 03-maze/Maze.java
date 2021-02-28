@@ -192,7 +192,7 @@ public class Maze{
           if(dir==3) return 1+solve(r,c-1,dir,0);
         }
         if(adir<4){
-          return solve(r,c,dir+1,adir+1);
+          solve(r,c,dir+1,adir+1);
         }
         if(back(r,c,dir)){
           if(dir==0) return solve(r+1,c,dir,0)-1;
