@@ -172,7 +172,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int r, int c, int dir, int adir, int steps){ //you can add more parameters since this is private
+  private int solve(int r, int c, int dir, int adir){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
       if(animate){
           gotoTop();
@@ -181,32 +181,22 @@ public class Maze{
       }
 
       //COMPLETE SOLVE
-      // int steps=0;
-      if(maze[r][c]=='E') return steps;
-
-      if(adir<4){
-        if(dir>=4) dir=0;
+      int steps=0;
+      if(maze[r][c]=='E') return 1;
+      else{
         if(go(r,c,dir)){
-          steps++;
-          if(dir==0) solve(r-1,c,dir,0,steps);
-          if(dir==1) solve(r,c+1,dir,0,steps);
-          if(dir==2) solve(r+1,c,dir,0,steps);
-          if(dir==3) solve(r,c-1,dir,0,steps);
+          if(dir==0) return 1+solve(r-1,c,dir,0);
         }
-        adir++;
-        steps+=solve(r,c,dir+1,adir,steps);
+        if(adir<4){
+          return solve(r,c,dir+1,adir+1);
+        }
+        if(back(r,c,dir)){
+          if(dir==0) return solve(r+1,c,dir,0)-1;
+        }
       }
 
-      if(adir>=4){ // tried all dirs
-        if(back(r,c,dir)){
-          steps--;
-          if(dir==0) solve(r+1,c,dir,0,steps);
-          if(dir==1) solve(r,c-1,dir,0,steps);
-          if(dir==2) solve(r-1,c,dir,0,steps);
-          if(dir==3) solve(r,c+1,dir,0,steps);
-        }
-      }
       // if ^ doesn't work return steps, and do steps+=solve(...)
-      return -1; //so it compiles
+      return steps; //so it compiles
   }
+
 }
