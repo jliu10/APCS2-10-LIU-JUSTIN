@@ -90,7 +90,7 @@ public class Maze{
           //start solving at the location of the s.
           //return solve(???,???);
           int[] s=findS();
-          return solve(s[0],s[1],0,0);
+          return solve(s[0],s[1],0,0,0);
   }
 
   private int[] findS(){
@@ -179,7 +179,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int r, int c, int dir, int adir){ //you can add more parameters since this is private
+  private int solve(int r, int c, int dir, int adir, int steps){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
     //System.out.println("r:"+r+", c:"+c+", dir:"+dir+", adir:"+adir);
     if(animate){
@@ -192,36 +192,40 @@ public class Maze{
     // int steps=0;
     if(go(r,c,dir,'E')){
     // if(maze[r][c]=='E'){
-    //  System.out.println("JUSTIN");
-      return 0;
+      // System.out.println("HELLO");
+      return steps;
+      // return 1;
       // System.exit(0);
     }
     //if(maze[r][c]=='E') return 0;
     else{
       if(dir>=4) dir=0;
       if(go(r,c,dir,' ')){
-        if(dir==0) r--;// return 1+solve(r-1,c,dir,0);
-        if(dir==1) c++;// return 1+solve(r,c+1,dir,0);
-        if(dir==2) r++;// return 1+solve(r+1,c,dir,0);
-        if(dir==3) c--;// return 1+solve(r,c-1,dir,0);
-        return 1+solve(r,c,dir,0);
-        // steps+=1+solve(r,c,dir,0);
+        steps++;
+        if(dir==0) if(solve(r-1,c,dir,0,steps)>-1) return 1+solve(r-1,c,dir,0,steps);
+        if(dir==1) if(solve(r,c+1,dir,0,steps)>-1) return 1+solve(r,c+1,dir,0,steps);
+        if(dir==2) if(solve(r+1,c,dir,0,steps)>-1) return 1+solve(r+1,c,dir,0,steps);
+        if(dir==3) if(solve(r,c-1,dir,0,steps)>-1) return 1+solve(r,c-1,dir,0,steps);
+        // return solve(r,c,dir,0);
+        // return solve(r,c,dir,0,steps);
       }
-      //else{
-      if(adir<4){
-        solve(r,c,dir+1,adir+1);
+      else{
+        if(adir<4){
+          solve(r,c,dir+1,adir+1,steps);
+        }
+        // if(go(r,c,dir,'E')) return steps;
+        if(back(r,c,dir)){
+          steps--;
+          if(dir==0) r++;// return solve(r+1,c,dir,0)-1;
+          if(dir==1) c--;// return solve(r,c-1,dir,0)-1;
+          if(dir==2) r--;// return solve(r-1,c,dir,0)-1;
+          if(dir==3) c++;// return solve(r,c+1,dir,0)-1;
+          // return solve(r,c,dir,0)-1;
+          if(solve(r,c,dir,0,steps)>-1) return solve(r,c,dir,0,steps);
+        }
       }
-      if(back(r,c,dir)){
-        if(dir==0) r++;// return solve(r+1,c,dir,0)-1;
-        if(dir==1) c--;// return solve(r,c-1,dir,0)-1;
-        if(dir==2) r--;// return solve(r-1,c,dir,0)-1;
-        if(dir==3) c++;// return solve(r,c+1,dir,0)-1;
-        return solve(r,c,dir,0)-1;
-        // steps+=solve(r,c,dir,0)-1;
-      }
-      //}
     }
-
+    // System.out.println(steps);
     // if ^ doesn't work return steps, and do steps+=solve(...)
     // return steps;
     return -1; //so it compiles
