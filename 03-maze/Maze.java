@@ -185,14 +185,15 @@ public class Maze{
     if(animate){
         gotoTop();
         System.out.println(this);
-        wait(50);
+        wait(1000);
     }
 
     //COMPLETE SOLVE
     // int steps=0;
-    if(go(r,c,dir,'E')){
-    // if(maze[r][c]=='E'){
+    // if(go(r,c,dir,'E')){
+    if(maze[r][c]=='E'){
       // System.out.println("HELLO");
+      System.out.println("STEPS BEFORE RETURN STEPS: "+steps);
       return steps;
       // return 1;
       // System.exit(0);
@@ -200,35 +201,39 @@ public class Maze{
     //if(maze[r][c]=='E') return 0;
     else{
       if(dir>=4) dir=0;
-      if(go(r,c,dir,' ')){
+      System.out.println(steps);
+      System.out.println("DIRECTION1: "+dir);
+      if(go(r,c,dir,' ') || go(r,c,dir,'E')){
         steps++;
-        if(dir==0) if(solve(r-1,c,dir,0,steps)>-1) return 1+solve(r-1,c,dir,0,steps);
-        if(dir==1) if(solve(r,c+1,dir,0,steps)>-1) return 1+solve(r,c+1,dir,0,steps);
-        if(dir==2) if(solve(r+1,c,dir,0,steps)>-1) return 1+solve(r+1,c,dir,0,steps);
-        if(dir==3) if(solve(r,c-1,dir,0,steps)>-1) return 1+solve(r,c-1,dir,0,steps);
+        if(dir==0) if(solve(r-1,c,dir,0,steps)>-1) return solve(r-1,c,dir,0,steps);
+        if(dir==1) if(solve(r,c+1,dir,0,steps)>-1) return solve(r,c+1,dir,0,steps);
+        if(dir==2) if(solve(r+1,c,dir,0,steps)>-1) return solve(r+1,c,dir,0,steps);
+        if(dir==3) if(solve(r,c-1,dir,0,steps)>-1) return solve(r,c-1,dir,0,steps);
         // return solve(r,c,dir,0);
         // return solve(r,c,dir,0,steps);
       }
-      else{
+      // else{
+        System.out.print("DIRECTION2: "+dir);
         if(adir<4){
-          solve(r,c,dir+1,adir+1,steps);
+          // if(solve(r,c,dir+1,adir+1,steps)>-1)
+          return solve(r,c,dir+1,adir+1,steps);
         }
         // if(go(r,c,dir,'E')) return steps;
         if(back(r,c,dir)){
           steps--;
-          if(dir==0) r++;// return solve(r+1,c,dir,0)-1;
-          if(dir==1) c--;// return solve(r,c-1,dir,0)-1;
-          if(dir==2) r--;// return solve(r-1,c,dir,0)-1;
-          if(dir==3) c++;// return solve(r,c+1,dir,0)-1;
+          if(dir==0) if(solve(r+1,c,dir,0,steps)>-1) return solve(r+1,c,dir,0,steps);// return solve(r+1,c,dir,0)-1;
+          if(dir==1) if(solve(r,c-1,dir,0,steps)>-1) return solve(r,c-1,dir,0,steps);// return solve(r,c-1,dir,0)-1;
+          if(dir==2) if(solve(r-1,c,dir,0,steps)>-1) return solve(r-1,c,dir,0,steps);// return solve(r-1,c,dir,0)-1;
+          if(dir==3) if(solve(r,c+1,dir,0,steps)>-1) return solve(r,c+1,dir,0,steps);// return solve(r,c+1,dir,0)-1;
           // return solve(r,c,dir,0)-1;
-          if(solve(r,c,dir,0,steps)>-1) return solve(r,c,dir,0,steps);
+          // if(solve(r,c,dir,0,steps)>-1) return solve(r,c,dir,0,steps);
         }
-      }
+      // }
     }
     // System.out.println(steps);
     // if ^ doesn't work return steps, and do steps+=solve(...)
     // return steps;
     return -1; //so it compiles
-}
+  }
 
 }
