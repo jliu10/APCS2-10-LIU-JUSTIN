@@ -36,6 +36,13 @@ public class Maze{
     cols=maze[0].length;
   }
 
+  private static String colorize(String s){
+    s = s.replace("@", "\033[32m\033[49m@\033[0m");
+    s = s.replace("#", "\033[37m\033[47m#\033[0m");
+    s = s.replace("E", "\033[35m\033[49mE\033[0m");
+    return s;
+  }
+
   private void wait(int millis){
        try {
            Thread.sleep(millis);
@@ -68,7 +75,7 @@ public class Maze{
       }
       if(i<maze.length-1) s+="\n";
     }
-    return s;
+    return colorize(s);
   }
 
   /*Wrapper Solve Function returns the helper function
@@ -173,43 +180,51 @@ public class Maze{
       All visited spots that are part of the solution are changed to '@'
   */
   private int solve(int r, int c, int dir, int adir){ //you can add more parameters since this is private
-      //automatic animation! You are welcome.
-      if(animate){
-          gotoTop();
-          System.out.println(this);
-          wait(50);
-      }
+    //automatic animation! You are welcome.
+    //System.out.println("r:"+r+", c:"+c+", dir:"+dir+", adir:"+adir);
+    if(animate){
+        gotoTop();
+        System.out.println(this);
+        wait(50);
+    }
 
-      //COMPLETE SOLVE
-      // int steps=0;
-      if(go(r,c,dir,'E')) return 0;
-      //if(maze[r][c]=='E') return 0;
-      else{
-        if(dir>=4) dir=0;
-        if(go(r,c,dir,' ')){
-          if(dir==0) r--;// return 1+solve(r-1,c,dir,0);
-          if(dir==1) c++;// return 1+solve(r,c+1,dir,0);
-          if(dir==2) r++;// return 1+solve(r+1,c,dir,0);
-          if(dir==3) c--;// return 1+solve(r,c-1,dir,0);
-          return 1+solve(r,c,dir,0);
-        }
-        else{ //
-          if(adir<4){
-            solve(r,c,dir+1,adir+1);
-          }
-          if(back(r,c,dir)){
-            if(dir==0) r++;// return solve(r+1,c,dir,0)-1;
-            if(dir==1) c--;// return solve(r,c-1,dir,0)-1;
-            if(dir==2) r--;// return solve(r-1,c,dir,0)-1;
-            if(dir==3) c++;// return solve(r,c+1,dir,0)-1;
-            return solve(r,c,dir,0);
-          }
-        }
+    //COMPLETE SOLVE
+    // int steps=0;
+    if(go(r,c,dir,'E')){
+    // if(maze[r][c]=='E'){
+    //  System.out.println("JUSTIN");
+      return 0;
+      // System.exit(0);
+    }
+    //if(maze[r][c]=='E') return 0;
+    else{
+      if(dir>=4) dir=0;
+      if(go(r,c,dir,' ')){
+        if(dir==0) r--;// return 1+solve(r-1,c,dir,0);
+        if(dir==1) c++;// return 1+solve(r,c+1,dir,0);
+        if(dir==2) r++;// return 1+solve(r+1,c,dir,0);
+        if(dir==3) c--;// return 1+solve(r,c-1,dir,0);
+        return 1+solve(r,c,dir,0);
+        // steps+=1+solve(r,c,dir,0);
       }
+      //else{
+      if(adir<4){
+        solve(r,c,dir+1,adir+1);
+      }
+      if(back(r,c,dir)){
+        if(dir==0) r++;// return solve(r+1,c,dir,0)-1;
+        if(dir==1) c--;// return solve(r,c-1,dir,0)-1;
+        if(dir==2) r--;// return solve(r-1,c,dir,0)-1;
+        if(dir==3) c++;// return solve(r,c+1,dir,0)-1;
+        return solve(r,c,dir,0)-1;
+        // steps+=solve(r,c,dir,0)-1;
+      }
+      //}
+    }
 
-      // if ^ doesn't work return steps, and do steps+=solve(...)
-      // return steps;
-      return -1; //so it compiles
-  }
+    // if ^ doesn't work return steps, and do steps+=solve(...)
+    // return steps;
+    return -1; //so it compiles
+}
 
 }
