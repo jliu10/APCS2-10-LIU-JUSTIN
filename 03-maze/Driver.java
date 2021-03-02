@@ -12,6 +12,8 @@ public class Driver{
         f.setAnimate(true);//comment this if you are using windows cmd/powershell
         System.out.println(f.solve()+" steps");
         System.out.println(f);
+        // int[] s=f.findS();
+        // System.out.println("S: "+s[0]+", "+s[1]);
       }catch(FileNotFoundException e){
         System.out.println("Invalid filename: "+filename);
       }
