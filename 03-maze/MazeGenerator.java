@@ -26,6 +26,10 @@ public class MazeGenerator{
 
   public static int neighbors(char[][] m, int r, int c){
     int n=0;
+    if(m[r-1][c]!='#') n++;
+    if(m[r+1][c]!='#') n++;
+    if(m[r][c-1]!='#') n++;
+    if(m[r][c+1]!='#') n++;
     return n;
   }
 
