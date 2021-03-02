@@ -40,12 +40,18 @@ public class MazeGenerator{
     return false;
   }
 
-  public static void generate(char[][] maze){
-    generate(maze,0,0);
-  }
-
-  public static void generate(char[][]maze,int startrow,int startcol){
-
+  public static void generate(char[][] maze,int r,int c){
+    if(safe(maze,r,c)){
+      maze[r][c]=' ';
+      int dir=(int)(Math.random()*4);
+      for(int i=0; i<4; i++){
+        if(dir>3) dir=0;
+        if(dir==0) generate(maze, r-1, c);
+        else if(dir==1) generate(maze, r, c+1);
+        else if(dir==2) generate(maze, r+1, c);
+        else if(dir==3) generate(maze, r, c-1);
+      }
+    }
   }
 
 
