@@ -130,26 +130,29 @@ public class Maze{
     }
 
     //COMPLETE SOLVE
-    if(maze[r][c]=='E') return 1;
+    int var=0;
+    if(maze[r][c]=='E') return 0;
 
     if(maze[r][c]==' ' || maze[r][c]=='S'){
       maze[r][c]='@';
-      if(solve(r-1,c)>-1){
-        System.out.println("Hello");
-        return 1+solve(r-1,c);
+      var=solve(r-1,c);
+      if(var>-1){
+        return 1+var;
       }
-      if(solve(r,c+1)>-1){
-        return 1+solve(r,c+1);
+      var=solve(r,c+1);
+      if(var>-1){
+        return 1+var;
       }
-      if(solve(r+1,c)>-1){
-        return 1+solve(r+1,c);
+      var=solve(r+1,c);
+      if(var>-1){
+        return 1+var;
       }
-      if(solve(r,c-1)>-1){
-        return 1+solve(r,c-1);
+      var=solve(r,c-1);
+      if(var>-1){
+        return 1+var;
       }
       maze[r][c]='.';
     }
-
 
     return -1; //so it compiles
   }
