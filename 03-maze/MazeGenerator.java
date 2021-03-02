@@ -20,8 +20,17 @@ public class MazeGenerator{
     return s;
   }
 
-  public maze getMaze(){
+  public char[][] getMaze(){
     return maze;
+  }
+
+  public static int neighbors(char[][] m, int r, int c){
+    int n=0;
+    return n;
+  }
+
+  public static boolean safe(char[][] m, int r, int c){
+    return false;
   }
 
   public static void generate(char[][] maze){
