@@ -4,8 +4,6 @@ import java.io.*;
 public class Maze{
 
   private char[][]maze;
-  private int rows;
-  private int cols;
   private boolean animate;//false by default
 
   /*Constructor loads a maze text file, and sets animate to false by default.
@@ -29,11 +27,7 @@ public class Maze{
       x.add(inf.nextLine().toCharArray());
     }
     maze=new char[x.size()][];
-    for(int i=0; i<maze.length; i++){
-      maze[i]=x.get(i);;
-    }
-    rows=maze.length;
-    cols=maze[0].length;
+    for(int i=0; i<maze.length; i++) maze[i]=x.get(i);
   }
 
   private static String colorize(String s){
@@ -95,8 +89,8 @@ public class Maze{
 
   private int[] findS(){
     int[] s=new int[2];
-    for(int i=0; i<rows; i++){
-      for(int j=0; j<cols; j++){
+    for(int i=0; i<maze.length; i++){
+      for(int j=0; j<maze[0].length; j++){
         if(maze[i][j]=='S'){
           s[0]=i;
           s[1]=j;
