@@ -122,7 +122,6 @@ public class Maze{
   */
   private int solve(int r, int c){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
-    //System.out.println("r:"+r+", c:"+c+", dir:"+dir+", adir:"+adir);
     if(animate){
         gotoTop();
         System.out.println(this);
@@ -136,21 +135,17 @@ public class Maze{
     if(maze[r][c]==' ' || maze[r][c]=='S'){
       maze[r][c]='@';
       var=solve(r-1,c);
-      if(var>-1){
-        return 1+var;
-      }
+      if(var>-1) return 1+var;
+
       var=solve(r,c+1);
-      if(var>-1){
-        return 1+var;
-      }
+      if(var>-1) return 1+var;
+
       var=solve(r+1,c);
-      if(var>-1){
-        return 1+var;
-      }
+      if(var>-1) return 1+var;
+
       var=solve(r,c-1);
-      if(var>-1){
-        return 1+var;
-      }
+      if(var>-1) return 1+var;
+
       maze[r][c]='.';
     }
 
