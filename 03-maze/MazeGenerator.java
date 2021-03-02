@@ -73,11 +73,11 @@ public class MazeGenerator{
     return false;
   }
 
-  // public static void generate(char[][] maze,int r,int c,int sr,int sc){
-  //   generate(maze,sr,sc);
-  // }
+  public static void generate(char[][]maze,int rows,int cols,int startrow,int startcol){
+    generate(maze,startrow,startcol);
+  }
 
-  public static void generate(char[][] maze,int,rr,int cc,int r,int c){
+  public static void generate(char[][] maze,int r,int c){
     if(safe(maze,r,c)){
       maze[r][c]=' ';
       int dir=(int)(Math.random()*4);
