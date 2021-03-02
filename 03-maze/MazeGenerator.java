@@ -50,6 +50,7 @@ public class MazeGenerator{
         else if(dir==1) generate(maze, r, c+1);
         else if(dir==2) generate(maze, r+1, c);
         else if(dir==3) generate(maze, r, c-1);
+        dir++;
       }
     }
   }
