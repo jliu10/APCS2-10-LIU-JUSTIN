@@ -23,8 +23,15 @@ public class Driver2{
 
     MazeGenerator p=new MazeGenerator(r,c);
     // System.out.println(p);
-    MazeGenerator.generate(p.getMaze(),sr,sc);
+    p.setAnimate(true);//comment this if you are using windows cmd/powershell
+    if(p.getAnimate()){
+      MazeGenerator.clearTerminal();
+      p.generate(sr,sr);
+      System.out.println();
+    }
+    // MazeGenerator.generate(p.getMaze(),sr,sc);
     System.out.println(p);
+
   }
 
 }
