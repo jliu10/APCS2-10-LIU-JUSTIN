@@ -25,7 +25,7 @@ public class MazeGenerator{
   }
 
   public static void generate(char[][] maze){
-    return generate(maze,0,0);
+    generate(maze,0,0);
   }
 
   public static void generate(char[][]maze,int startrow,int startcol){
