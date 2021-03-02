@@ -90,7 +90,7 @@ public class Maze{
           //start solving at the location of the s.
           //return solve(???,???);
           int[] s=findS();
-          return solve(s[0],s[1],0);
+          return solve(s[0],s[1]);
   }
 
   private int[] findS(){
@@ -179,7 +179,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int r, int c, int steps){ //you can add more parameters since this is private
+  private int solve(int r, int c){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
     //System.out.println("r:"+r+", c:"+c+", dir:"+dir+", adir:"+adir);
     if(animate){
@@ -189,22 +189,22 @@ public class Maze{
     }
 
     //COMPLETE SOLVE
-    if(maze[r][c]=='E') return steps;
+    if(maze[r][c]=='E') return 1;
 
     if(maze[r][c]==' ' || maze[r][c]=='S'){
       maze[r][c]='@';
-      steps++;
-      if(solve(r-1,c,steps)>-1){
-        return solve(r-1,c,steps);
+      if(solve(r-1,c)>-1){
+        System.out.println("Hello");
+        return 1+solve(r-1,c);
       }
-      if(solve(r,c+1,steps)>-1){
-        return solve(r,c+1,steps);
+      if(solve(r,c+1)>-1){
+        return 1+solve(r,c+1);
       }
-      if(solve(r+1,c,steps)>-1){
-        return solve(r+1,c,steps);
+      if(solve(r+1,c)>-1){
+        return 1+solve(r+1,c);
       }
-      if(solve(r,c-1,steps)>-1){
-        return solve(r,c-1,steps);
+      if(solve(r,c-1)>-1){
+        return 1+solve(r,c-1);
       }
       maze[r][c]='.';
     }
