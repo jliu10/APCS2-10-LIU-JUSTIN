@@ -22,8 +22,8 @@ public class Driver2{
     }
 
     MazeGenerator p=new MazeGenerator(r,c);
-    System.out.println(p);
-    generate(p.getMaze(),sr,sc);
+    // System.out.println(p);
+    MazeGenerator.generate(p.getMaze(),sr,sc);
     System.out.println(p);
   }
 
