@@ -106,65 +106,6 @@ public class Maze{
     return s;
   }
 
-  private boolean go(int r, int c, int dir, char ch){
-    // if space in direction is empty, go and drop an @
-    if(dir==0){ // up
-      if(r>0) if(maze[r-1][c]==ch){
-        maze[r][c]='@';
-        return true;
-      }
-    }
-    else if(dir==1){ // right
-      if(c<cols-1) if(maze[r][c+1]==ch){
-        maze[r][c]='@';
-        return true;
-      }
-    }
-    else if(dir==2){ // down
-      if(r<rows-1) if(maze[r+1][c]==ch){
-        maze[r][c]='@';
-        return true;
-      }
-    }
-    else if(dir==3){ // left
-      if(c>0) if(maze[r][c-1]==ch){
-        maze[r][c]='@';
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private boolean back(int r, int c, int dir){
-    // back, remove @, and drop a .
-    // dirs are opposite of go
-    if(dir==0){ // down
-      if(r<rows-1) if(maze[r+1][c]=='@'){
-        maze[r][c]='.';
-        return true;
-      }
-    }
-    else if(dir==1){ // left
-      if(c>0) if(maze[r][c-1]=='@'){
-        maze[r][c]='.';
-        return true;
-      }
-    }
-    else if(dir==2){ // up
-      if(r>0) if(maze[r-1][c]=='@'){
-        maze[r][c]='.';
-        return true;
-      }
-    }
-    else if(dir==3){ // right
-      if(c<cols-1) if(maze[r][c+1]=='@'){
-        maze[r][c]='.';
-        return true;
-      }
-    }
-    return false;
-  }
-
   /*
     Recursive Solve function:
 
