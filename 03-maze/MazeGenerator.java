@@ -58,7 +58,7 @@ public class MazeGenerator{
   }
 
   public static double distance(int r1, int c1, int r2, int c2){
-    return 0;
+    return Math.sqrt(Math.pow(r2-r1,2)+Math.pow(c2-c1,2));
   }
 
   public static int neighbors(char[][] m, int r, int c){
@@ -82,7 +82,7 @@ public class MazeGenerator{
     int sc=startcol;
     generate(maze,startrow,startcol);
     if(maze[sr][sc]==' ') maze[sr][sc]='S';
-    int d=0;
+    double d=0;
     int er=0;
     int ec=0;
     for(int i=0; i<maze.length; i++){
@@ -91,6 +91,7 @@ public class MazeGenerator{
           if(distance(sr,sc,i,j)>d){
             er=i;
             ec=j;
+            d=distance(sr,sc,i,j);
           }
         }
       }
