@@ -1,12 +1,45 @@
 public class MazeGenerator{
 
   private char[][] maze;
+  private boolean animate;
 
   public MazeGenerator(int r, int c){ // generates an r x c rectangle of #s
     maze=new char[r][c];
     for(int i=0; i<r; i++){
       for(int j=0; j<c; j++) maze[i][j]='#';
     }
+  }
+
+  private static String colorize(String s){
+    s = s.replace("@", "\033[32m\033[49m@\033[0m");
+    s = s.replace("#", "\033[37m\033[47m#\033[0m");
+    s = s.replace("E", "\033[35m\033[49mE\033[0m");
+    return s;
+  }
+
+  private void wait(int millis){
+       try {
+           Thread.sleep(millis);
+       }
+       catch (InterruptedException e) {
+       }
+   }
+
+  public void setAnimate(boolean b){
+      animate = b;
+  }
+
+  public boolean getAnimate(){
+    return animate;
+  }
+
+  public static void clearTerminal(){
+      //erase terminal
+      System.out.println("\033[2J");
+  }
+  public static void gotoTop(){
+    //go to top left of screen
+    System.out.println("\033[1;1H");
   }
 
   public String toString(){
@@ -17,7 +50,7 @@ public class MazeGenerator{
       }
       if(i<maze.length-1) s+="\n";
     }
-    return s;
+    return colorize(s);
   }
 
   public char[][] getMaze(){
@@ -50,6 +83,27 @@ public class MazeGenerator{
         else if(dir==1) generate(maze, r, c+1);
         else if(dir==2) generate(maze, r+1, c);
         else if(dir==3) generate(maze, r, c-1);
+        dir++;
+      }
+    }
+  }
+
+  public void generate(int r,int c){
+    if(animate){
+        gotoTop();
+        System.out.println(this);
+        wait(50);
+    }
+
+    if(safe(maze,r,c)){
+      maze[r][c]=' ';
+      int dir=(int)(Math.random()*4);
+      for(int i=0; i<4; i++){
+        if(dir>3) dir=0;
+        if(dir==0) generate(r-1, c);
+        else if(dir==1) generate(r, c+1);
+        else if(dir==2) generate(r+1, c);
+        else if(dir==3) generate(r, c-1);
         dir++;
       }
     }
