@@ -20,6 +20,10 @@ public class MazeGenerator{
     return s;
   }
 
+  public maze getMaze(){
+    return maze;
+  }
+
   public static void generate(char[][]maze,int startrow,int startcol){
 
   }
