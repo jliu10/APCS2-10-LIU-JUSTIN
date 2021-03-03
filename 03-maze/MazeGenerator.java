@@ -77,10 +77,8 @@ public class MazeGenerator{
     return false;
   }
 
-  public static void generate(char[][]maze,int rows,int cols,int startrow,int startcol){
-    int sr=startrow;
-    int sc=startcol;
-    generate(maze,startrow,startcol);
+  public static void generate(char[][]maze,int rows,int cols,int sr,int sc){
+    generate(maze,sr,sc);
     if(maze[sr][sc]==' ') maze[sr][sc]='S';
     double d=0;
     int er=0;
