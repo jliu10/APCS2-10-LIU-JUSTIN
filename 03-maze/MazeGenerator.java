@@ -121,13 +121,12 @@ public class MazeGenerator{
     if(safe(maze,r,c)){
       maze[r][c]=' ';
       int dir=(int)(Math.random()*4);
-      for(int i=0; i<4; i++){
+      for(int i=0; i<4; i++, dir++){
         if(dir>3) dir=0;
         if(dir==0) generate(r-1, c);
         else if(dir==1) generate(r, c+1);
         else if(dir==2) generate(r+1, c);
         else if(dir==3) generate(r, c-1);
-        dir++;
       }
     }
   }
