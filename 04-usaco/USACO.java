@@ -50,9 +50,12 @@ public class USACO{
       }
     }
 
-    int v=72*72;
-
-
+    // calculation
+    int depths=0;
+    for(int[] r : pasture) for(int n : r){
+      if(n<E) depths+=E-n;
+    }
+    int v=72*72*depths;
     return v;
   }
 
