@@ -35,7 +35,25 @@ public class USACO{
       for(int j=0; j<3; j++) stomps[i][j]=Integer.parseInt(info.get(i+1+pasture.length).get(j));
     }
 
-    return 0;
+    // stomping pasture
+    for(int[] set : stomps){
+      int max=0;
+      for(int i=set[0]-1; i<set[0]+2; i++){
+        for(int j=set[1]-1; j<set[1]+2; j++){
+          if(pasture[i][j]>max) max=pasture[i][j];
+        }
+      }
+      for(int i=set[0]-1; i<set[0]+2; i++){
+        for(int j=set[1]-1; j<set[1]+2; j++){
+          if(pasture[i][j]>max-set[2]) pasture[i][j]=max-set[2];
+        }
+      }
+    }
+
+    int v=72*72;
+
+
+    return v;
   }
 
   public static long silver(String filename) throws FileNotFoundException{
