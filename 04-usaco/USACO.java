@@ -18,7 +18,7 @@ public class USACO{
     return info;
   }
 
-  public static int bronze(String filename){
+  public static int bronze(String filename) throws FileNotFoundException{
     ArrayList<ArrayList<String>> info=read(filename);
     // setting up arrays, var E
     int[][] pasture=new int[Integer.parseInt(info.get(0).get(0))][Integer.parseInt(info.get(0).get(1))];
@@ -38,7 +38,7 @@ public class USACO{
     return 0;
   }
 
-  public static long silver(String filename){
+  public static long silver(String filename) throws FileNotFoundException{
     ArrayList<ArrayList<String>> info=read(filename);
     return 0;
   }
