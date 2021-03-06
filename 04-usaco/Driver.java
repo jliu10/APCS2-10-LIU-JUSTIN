@@ -6,6 +6,7 @@ public class Driver{
 
     try{
       System.out.println(USACO.read(filename).toString());
+      System.out.println(USACO.bronze(filename));
 
     }catch(FileNotFoundException e){
       System.out.println("Invalid filename: "+filename);
