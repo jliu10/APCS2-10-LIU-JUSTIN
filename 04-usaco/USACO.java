@@ -59,16 +59,24 @@ public class USACO{
   public static long silver(String filename) throws FileNotFoundException{
     ArrayList<ArrayList<String>> info=read(filename);
     // setting up array, var T
-    int[][] pasture=new int[Integer.parseInt(info.get(0).get(0))][Integer.parseInt(info.get(0).get(1))];
+    long[][] pasture=new long[Integer.parseInt(info.get(0).get(0))][Integer.parseInt(info.get(0).get(1))];
     int T=Integer.parseInt(info.get(0).get(2));
-    // converting char pasture to ints, filling in array
+    // converting String pasture to ints, filling in array
     for(int r=0; r<pasture.length; r++){
       for(int c=0; c<pasture[0].length; c++){
         if(info.get(1+r).get(0).charAt(c)=='.') pasture[r][c]=0;
         else pasture[r][c]=-1;
       }
     }
-
+    /*
+    for(int i=0; i<pasture.length; i++){
+      for(int j=0; j<pasture[0].length; j++){
+        System.out.print(pasture[i][j]+" ");
+      }
+      System.out.print("\n");
+    }
+    */
+    // moving cows
     return 0;
   }
 
