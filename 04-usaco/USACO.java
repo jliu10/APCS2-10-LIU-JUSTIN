@@ -59,18 +59,20 @@ public class USACO{
   public static long silver(String filename) throws FileNotFoundException{
     ArrayList<ArrayList<String>> info=read(filename);
     // setting up array, var T
-    long[][] pasture=new long[Integer.parseInt(info.get(0).get(0))][Integer.parseInt(info.get(0).get(1))];
+    int rows=Integer.parseInt(info.get(0).get(0));
+    int cols=Integer.parseInt(info.get(0).get(1));
+    long[][] pasture=new long[rows][cols];
     int T=Integer.parseInt(info.get(0).get(2));
     // converting String pasture to ints, filling in array
-    for(int r=0; r<pasture.length; r++){
-      for(int c=0; c<pasture[0].length; c++){
+    for(int r=0; r<rows; r++){
+      for(int c=0; c<cols; c++){
         if(info.get(1+r).get(0).charAt(c)=='.') pasture[r][c]=0;
         else pasture[r][c]=-1;
       }
     }
     /*
-    for(int i=0; i<pasture.length; i++){
-      for(int j=0; j<pasture[0].length; j++){
+    for(int i=0; i<rows; i++){
+      for(int j=0; j<cols; j++){
         System.out.print(pasture[i][j]+" ");
       }
       System.out.print("\n");
@@ -79,13 +81,46 @@ public class USACO{
     // getting start, end
     int[] S=new int[2];
     int[] E=new int[2];
-    S[0]=Integer.parseInt(info.get(1+pasture.length).get(0))-1;
-    S[1]=Integer.parseInt(info.get(1+pasture.length).get(1))-1;
-    E[0]=Integer.parseInt(info.get(1+pasture.length).get(2))-1;
-    E[1]=Integer.parseInt(info.get(1+pasture.length).get(3))-1;
+    S[0]=Integer.parseInt(info.get(1+rows).get(0))-1;
+    S[1]=Integer.parseInt(info.get(1+rows).get(1))-1;
+    E[0]=Integer.parseInt(info.get(1+rows).get(2))-1;
+    E[1]=Integer.parseInt(info.get(1+rows).get(3))-1;
     // moving cows
+    pasture[S[0]][S[1]]=1;
+    long[][][] mem=new long[T][rows][cols];
+    mem[0]=pasture;
 
-    return 0;
+    for(int i=0; i<rows; i++){
+      for(int j=0; j<cols; j++){
+        System.out.print(mem[0][i][j]+" ");
+      }
+      System.out.print("\n");
+    }
+    System.out.println();
+
+    for(int steps=0; steps<T; steps++){
+      for(int r=0; r<rows; r++){
+        for(int c=0; c<cols; c++){
+          if(pasture[r][c]>-1){
+            if(r-1>=0 && pasture[r-1][c]>-1) pasture[r][c]+=mem[steps][r-1][c];
+            if(r+1<rows && pasture[r+1][c]>-1) pasture[r][c]+=mem[steps][r+1][c];
+            if(c-1>=0 && pasture[r][c-1]>-1) pasture[r][c]+=mem[steps][r][c-1];
+            if(c+1<cols && pasture[r][c+1]>-1) pasture[r][c]+=mem[steps][r][c+1];
+            pasture[r][c]=0;
+          }
+        }
+      }
+      mem[steps]=pasture;
+      for(int i=0; i<rows; i++){
+        for(int j=0; j<cols; j++){
+          System.out.print(mem[steps][i][j]+" ");
+        }
+        System.out.print("\n");
+      }
+      System.out.println();
+    }
+
+    return pasture[E[0]][E[1]];
   }
 
 }
