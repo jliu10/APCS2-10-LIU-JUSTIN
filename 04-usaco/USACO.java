@@ -24,7 +24,6 @@ public class USACO{
     int[][] pasture=new int[Integer.parseInt(info.get(0).get(0))][Integer.parseInt(info.get(0).get(1))];
     int E=Integer.parseInt(info.get(0).get(2));
     int[][] stomps=new int[Integer.parseInt(info.get(0).get(3))][3];
-
     // filling in arrays
     for(int i=0; i<pasture.length; i++){
       for(int j=0; j<pasture[0].length; j++){
@@ -34,7 +33,6 @@ public class USACO{
     for(int i=0; i<stomps.length; i++){
       for(int j=0; j<3; j++) stomps[i][j]=Integer.parseInt(info.get(i+1+pasture.length).get(j));
     }
-
     // stomping pasture
     for(int[] set : stomps){
       int max=0;
@@ -49,7 +47,6 @@ public class USACO{
         }
       }
     }
-
     // calculation
     int depths=0;
     for(int[] r : pasture) for(int n : r){
@@ -61,6 +58,17 @@ public class USACO{
 
   public static long silver(String filename) throws FileNotFoundException{
     ArrayList<ArrayList<String>> info=read(filename);
+    // setting up array, var T
+    int[][] pasture=new int[Integer.parseInt(info.get(0).get(0))][Integer.parseInt(info.get(0).get(1))];
+    int T=Integer.parseInt(info.get(0).get(2));
+    // converting char pasture to ints, filling in array
+    for(int r=0; r<pasture.length; r++){
+      for(int c=0; c<pasture[0].length; c++){
+        if(info.get(1+r).get(0).charAt(c)=='.') pasture[r][c]=0;
+        else pasture[r][c]=-1;
+      }
+    }
+
     return 0;
   }
 
