@@ -76,7 +76,15 @@ public class USACO{
       System.out.print("\n");
     }
     */
+    // getting start, end
+    int[] S=new int[2];
+    int[] E=new int[2];
+    S[0]=Integer.parseInt(info.get(1+pasture.length).get(0))-1;
+    S[1]=Integer.parseInt(info.get(1+pasture.length).get(1))-1;
+    E[0]=Integer.parseInt(info.get(1+pasture.length).get(2))-1;
+    E[1]=Integer.parseInt(info.get(1+pasture.length).get(3))-1;
     // moving cows
+
     return 0;
   }
 
