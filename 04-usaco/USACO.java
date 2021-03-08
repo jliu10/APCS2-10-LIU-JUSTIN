@@ -86,9 +86,10 @@ public class USACO{
     E[0]=Integer.parseInt(info.get(1+rows).get(2))-1;
     E[1]=Integer.parseInt(info.get(1+rows).get(3))-1;
     // moving cows
-    pasture[S[0]][S[1]]=1;
-    long[][][] mem=new long[T][rows][cols];
+    // pasture[S[0]][S[1]]=1;
+    long[][][] mem=new long[T+1][rows][cols];
     mem[0]=pasture;
+    mem[0][S[0]][S[1]]=1;
 
     for(int i=0; i<rows; i++){
       for(int j=0; j<cols; j++){
@@ -98,15 +99,16 @@ public class USACO{
     }
     System.out.println();
 
-    for(int steps=0; steps<T; steps++){
+    for(int steps=1; steps<=T; steps++){
       for(int r=0; r<rows; r++){
         for(int c=0; c<cols; c++){
           if(pasture[r][c]>-1){
-            if(r-1>=0 && pasture[r-1][c]>-1) pasture[r][c]+=mem[steps][r-1][c];
-            if(r+1<rows && pasture[r+1][c]>-1) pasture[r][c]+=mem[steps][r+1][c];
-            if(c-1>=0 && pasture[r][c-1]>-1) pasture[r][c]+=mem[steps][r][c-1];
-            if(c+1<cols && pasture[r][c+1]>-1) pasture[r][c]+=mem[steps][r][c+1];
-            pasture[r][c]=0;
+            if(r-1>=0 && pasture[r-1][c]>-1) pasture[r][c]+=1;//mem[steps][r-1][c];
+            if(r+1<rows && pasture[r+1][c]>-1) pasture[r][c]+=1;//mem[steps][r+1][c];
+            if(c-1>=0 && pasture[r][c-1]>-1) pasture[r][c]+=1;//mem[steps][r][c-1];
+            if(c+1<cols && pasture[r][c+1]>-1) pasture[r][c]+=1;//mem[steps][r][c+1];
+            System.out.println("TEST: "+pasture[r][c]);
+            if(mem[steps][r][c]>0) pasture[r][c]=0;
           }
         }
       }
@@ -120,7 +122,7 @@ public class USACO{
       System.out.println();
     }
 
-    return pasture[E[0]][E[1]];
+    return mem[T][E[0]][E[1]];
   }
 
 }
