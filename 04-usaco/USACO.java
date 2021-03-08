@@ -86,11 +86,23 @@ public class USACO{
     E[0]=Integer.parseInt(info.get(1+rows).get(2))-1;
     E[1]=Integer.parseInt(info.get(1+rows).get(3))-1;
     // moving cows
-    // pasture[S[0]][S[1]]=1;
+    /*
+    for(int i=0; i<rows; i++){
+      for(int j=0; j<cols; j++){
+        System.out.print(pasture[i][j]+" ");
+      }
+      System.out.print("\n");
+    }
+    System.out.println();
+    */
     long[][][] mem=new long[T+1][rows][cols];
-    mem[0]=pasture;
+    for(int t=0; t<T+1; t++){
+      for(int i=0; i<rows; i++) for(int j=0; j<cols; j++){
+        mem[t][i][j]=pasture[i][j];
+      }
+    }
     mem[0][S[0]][S[1]]=1;
-
+    /*
     for(int i=0; i<rows; i++){
       for(int j=0; j<cols; j++){
         System.out.print(mem[0][i][j]+" ");
@@ -98,21 +110,22 @@ public class USACO{
       System.out.print("\n");
     }
     System.out.println();
-
+    */
     for(int steps=1; steps<=T; steps++){
       for(int r=0; r<rows; r++){
         for(int c=0; c<cols; c++){
           if(pasture[r][c]>-1){
-            if(r-1>=0 && pasture[r-1][c]>-1) pasture[r][c]+=1;//mem[steps][r-1][c];
-            if(r+1<rows && pasture[r+1][c]>-1) pasture[r][c]+=1;//mem[steps][r+1][c];
-            if(c-1>=0 && pasture[r][c-1]>-1) pasture[r][c]+=1;//mem[steps][r][c-1];
-            if(c+1<cols && pasture[r][c+1]>-1) pasture[r][c]+=1;//mem[steps][r][c+1];
-            System.out.println("TEST: "+pasture[r][c]);
-            if(mem[steps][r][c]>0) pasture[r][c]=0;
+            if(r-1>=0 && pasture[r-1][c]>-1) mem[steps][r][c]+=mem[steps-1][r-1][c];
+            if(r+1<rows && pasture[r+1][c]>-1) mem[steps][r][c]+=mem[steps-1][r+1][c];
+            if(c-1>=0 && pasture[r][c-1]>-1) mem[steps][r][c]+=mem[steps-1][r][c-1];
+            if(c+1<cols && pasture[r][c+1]>-1) mem[steps][r][c]+=mem[steps-1][r][c+1];
+            // System.out.println("TEST: "+pasture[r][c]);
+            //if(mem[steps][r][c]>0) pasture[r][c]=0;
           }
         }
       }
-      mem[steps]=pasture;
+      /*
+      System.out.println("STEP: "+steps);
       for(int i=0; i<rows; i++){
         for(int j=0; j<cols; j++){
           System.out.print(mem[steps][i][j]+" ");
@@ -120,6 +133,7 @@ public class USACO{
         System.out.print("\n");
       }
       System.out.println();
+      */
     }
 
     return mem[T][E[0]][E[1]];
