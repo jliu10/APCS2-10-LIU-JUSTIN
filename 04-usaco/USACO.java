@@ -135,7 +135,6 @@ public class USACO{
       System.out.println();
       */
     }
-
     return mem[T][E[0]][E[1]];
   }
 
