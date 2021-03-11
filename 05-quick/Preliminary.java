@@ -33,6 +33,13 @@ public class Preliminary{
     int last=end;
     while(current<last){
       if(data[current]<p) current++;
+      else if(data[current]==p){
+        if((int)(Math.random()*2)>0) current++;
+        else{
+          swap(data,current,last);
+          last--;
+        }
+      }
       else{
         swap(data,current,last);
         last--;
