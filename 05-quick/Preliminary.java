@@ -27,7 +27,26 @@ public class Preliminary{
   public static int partition(int[] data, int start, int end){
     int r=(int)(Math.random()*(end-start+1))+start;
     int p=data[r];
-    return p;
+    System.out.println("Pivot: "+p);
+    swap(data,r,start);
+    int current=start+1;
+    int last=end;
+    while(current<last){
+      if(data[current]<p) current++;
+      else{
+        swap(data,current,last);
+        last--;
+      }
+    }
+    if(current==last){
+      if(data[current]<p){
+        swap(data,start,current);
+        return current;
+      }
+      else swap(data,start,current-1);
+      return current-1;
+    }
+    return start;
   }
 
 }
