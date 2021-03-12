@@ -44,11 +44,16 @@ public class Preliminary{
   *@return the index of the final position of the pivot element.
   */
   public static int partition(int[] data, int start, int end){
-    int r=(int)(Math.random()*(end-start+1))+start;
+    // int r=(int)(Math.random()*(end-start+1))+start;
     int mid=(end-start)/2;
-    int p=data[r];
+    int med=median(data[start],data[end],data[mid]);
+    int p=med;
     System.out.println("Pivot: "+p);
-    swap(data,r,start);
+    if(med==data[start]) med=start;
+    else if(med==data[end]) med=end;
+    else med=mid;
+    swap(data,med,start);
+
     int current=start+1;
     int last=end;
     while(current<last){
