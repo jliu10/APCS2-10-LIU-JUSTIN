@@ -14,25 +14,6 @@ public class Preliminary{
     return s;
   }
 
-  public static int median(int a, int b, int c){
-    int t=c;
-    if(a>c){
-      c=a;
-      a=t;
-    }
-    if(a>b){
-      t=b;
-      b=a;
-      a=t;
-    }
-    if(b>c){
-      t=c;
-      c=b;
-      b=t;
-    }
-    return b;
-  }
-
   /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the corresponding
   *   element is designated the pivot element.
@@ -44,15 +25,10 @@ public class Preliminary{
   *@return the index of the final position of the pivot element.
   */
   public static int partition(int[] data, int start, int end){
-    // int r=(int)(Math.random()*(end-start+1))+start;
-    int mid=(end-start)/2;
-    int med=median(data[start],data[end],data[mid]);
-    int p=med;
+    int r=(int)(Math.random()*(end-start+1))+start;
+    int p=data[r];
     System.out.println("Pivot: "+p);
-    if(med==data[start]) med=start;
-    else if(med==data[end]) med=end;
-    else med=mid;
-    swap(data,med,start);
+    swap(data,r,start);
 
     int current=start+1;
     int last=end;
