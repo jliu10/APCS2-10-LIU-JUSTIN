@@ -15,7 +15,12 @@ public class Driver2{
   }
 
   public static void main(String[] args){
-    int[] arr  = new int[]{2, 10, 15, 23, 0, 5};
+    /*
+      TERMINAL INPUT FORMAT:
+      java Driver2 <arraySize> <arrayType> <method (select or sort)>
+        <k for select>
+    */
+    // int[] arr  = new int[]{2, 10, 15, 23, 0, 5};
     int size=10000;
     if(args.length>2){
       size=Integer.parseInt(args[0]);
@@ -34,6 +39,10 @@ public class Driver2{
         randomize(arr1,0,100);
         Arrays.sort(arr1);
       }
+      else if(args[1].equals("same")){
+        int u=(int)(Math.random()*100);
+        for(int i=0; i<size; i++) arr1[i]=u;
+      }
 
       if(args[2].equals("select")){
         long beg = System.currentTimeMillis();
@@ -43,6 +52,7 @@ public class Driver2{
       }
       else if(args[2].equals("sort")){
         if(size<=20) System.out.println(Quick.toString(arr1));
+        System.out.println();
         int[] arr2=new int[size];
         for(int i=0; i<size; i++) arr2[i]= arr1[i];
         long beg = System.currentTimeMillis();
