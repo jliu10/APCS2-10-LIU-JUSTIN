@@ -63,7 +63,15 @@ public class Quick{
   }
 
   public static void quicksort(int[] data){
+    quicksort(data,0,data.length-1);
+  }
 
+  public static void quicksort(int[] data,int lo,int hi){
+    if(hi-lo>0){
+      int n=partition(data,lo,hi);
+      quicksort(data,lo,n-1);
+      quicksort(data,n+1,hi);
+    }
   }
 
   public static int[] partitionDutch(int[] data, int lo, int hi){
