@@ -17,7 +17,7 @@ public class Quick{
   public static int partition(int[] data, int start, int end){
     int r=(int)(Math.random()*(end-start+1))+start;
     int p=data[r];
-    System.out.println("Pivot: "+p);
+    // System.out.println("Pivot: "+p);
     swap(data,r,start);
 
     int current=start+1;
@@ -52,18 +52,24 @@ public class Quick{
   *@param k is 0 to data.length-1 inclusive
   *@postcondition The array can be modified. (If we did not want to modify the array, we could make a copy before we start the process)
   */
-  public static int quickselect(int []data, int k){
-    return 0;
+  public static int quickselect(int[] data, int k){
+    int hi=data.length-1;
+    int ip=partition(data,0,hi);
+    while(ip!=k){
+      if(ip>k) ip=partition(data,0,ip-1);
+      else ip=partition(data,ip+1,hi);
+    }
+    return data[ip];
   }
 
-  public static void quicksort(int[]){
+  public static void quicksort(int[] data){
 
   }
 
-  public static int[] partitionDutch(int[],int lo, int hi){
+  public static int[] partitionDutch(int[] data, int lo, int hi){
            //THIS IS OPTIONAL METHOD, it will make your quicksort faster.
            //return an int array: {lt,gt}
-    return 0;
+    return data;
   }
 
 }
