@@ -1,7 +1,7 @@
 public class Merge{
 
-  public static void merge(int[] data){
-    
+  public static void merge(int[] data, int lo, int hi){
+
   }
 
   public static void mergesort(int[] data){
