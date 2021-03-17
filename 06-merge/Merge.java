@@ -1,6 +1,6 @@
 public class Merge{
 
-  public static void merge(int[] data, int lo, int hi){
+  public static void merge(int[] data, int lo1, int hi1, int lo2, int hi2){
 
   }
 
