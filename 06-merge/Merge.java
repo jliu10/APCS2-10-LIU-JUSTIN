@@ -9,7 +9,35 @@ public class Merge{
   }
 
   public static int[] merge(int[] data, int lo1, int hi1, int lo2, int hi2){
-
+    // lo and hi are indexes
+    int[] result=new int[hi2-lo1+1];
+    int i1=lo1;
+    int i2=lo2;
+    int i=0;
+    while(i<result.length){
+      if(i1<=hi1){
+        if(i2<=hi2){
+          if(data[i1]<=data[i2]){
+            result[i]=data[i1];
+            i1++;
+          }
+          else{
+            result[i]=data[i2];
+            i2++;
+          }
+        }
+        else{
+          result[i]=data[i1];
+          i1++;
+        }
+      }
+      else{
+        result[i]=data[i2];
+        i2++;
+      }
+      i++;
+    }
+    return result;
   }
 
   public static void mergesort(int[] data){
