@@ -8,13 +8,13 @@ public class Merge{
     return s;
   }
 
-  public static int[] merge(int[] data, int lo1, int hi1, int lo2, int hi2){
+  public static void merge(int[] data, int[] result, int lo1, int hi1, int lo2, int hi2){
     // lo and hi are indexes
-    int[] result=new int[hi2-lo1+1];
+    // int[] result=new int[hi2-lo1+1];
     int i1=lo1;
     int i2=lo2;
-    int i=0;
-    while(i<result.length){
+    // int i=lo1;
+    for(int i=lo1; i<=hi2; i++){
       if(i1<=hi1){
         if(i2<=hi2){
           if(data[i1]<=data[i2]){
@@ -35,9 +35,9 @@ public class Merge{
         result[i]=data[i2];
         i2++;
       }
-      i++;
+      // i++;
     }
-    return result;
+    // return result;
   }
 
   public static void mergesort(int[] data){
