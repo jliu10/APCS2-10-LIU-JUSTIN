@@ -10,10 +10,8 @@ public class Merge{
 
   public static void merge(int[] data, int[] result, int lo1, int hi1, int lo2, int hi2){
     // lo and hi are indexes
-    // int[] result=new int[hi2-lo1+1];
     int i1=lo1;
     int i2=lo2;
-    // int i=lo1;
     for(int i=lo1; i<=hi2; i++){
       if(i1<=hi1){
         if(i2<=hi2){
@@ -44,14 +42,17 @@ public class Merge{
     int[] t=new int[data.length];
     for(int i=0; i<data.length; i++) t[i]=data[i];
     mergesort(data,t,0,data.length-1);
-    // if(data.length%2>0) for(int i=0; i<data.length; i++) data[i]=t[i];
+    if(data.length%2>0) for(int i=0; i<data.length; i++) data[i]=t[i];
   }
 
   public static void mergesort(int[] data, int[] temp, int lo, int hi){
     if(hi-lo>0){
-      mergesort(temp,data,lo,hi/2);
-      mergesort(temp,data,(hi-lo)/2+lo+1,hi);
-      merge(data,temp,lo,hi/2,hi/2+1,hi);
+      System.out.println("-----NEW CALL-----");
+      System.out.println("lo: "+lo+", hi: "+hi);
+      mergesort(temp,data,lo,(hi+lo)/2);
+      mergesort(temp,data,(lo+hi)/2+1,hi);
+      merge(data,temp,lo,(hi+lo)/2,(hi+lo)/2+1,hi);
+      // System.out.println();
     }
   }
 
