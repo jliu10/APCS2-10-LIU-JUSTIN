@@ -47,7 +47,7 @@ public class Merge{
   }
 
   public static void mergesort(int[] data, int[] temp, int lo, int hi){
-    if(data.length>1){
+    if(hi-lo>0){
       mergesort(temp,data,lo,hi/2);
       mergesort(temp,data,hi/2+1,hi);
       merge(data,temp,lo,hi/2,hi/2+1,hi);
