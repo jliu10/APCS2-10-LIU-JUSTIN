@@ -33,25 +33,23 @@ public class Merge{
         result[i]=data[i2];
         i2++;
       }
-      // i++;
     }
-    // return result;
   }
 
   public static void mergesort(int[] data){
     int[] t=new int[data.length];
     for(int i=0; i<data.length; i++) t[i]=data[i];
     mergesort(data,t,0,data.length-1);
-    if(data.length%2>0) for(int i=0; i<data.length; i++) data[i]=t[i];
+    // if(data.length%2>0) for(int i=0; i<data.length; i++) data[i]=t[i];
   }
 
   public static void mergesort(int[] data, int[] temp, int lo, int hi){
     if(hi-lo>0){
-      System.out.println("-----NEW CALL-----");
-      System.out.println("lo: "+lo+", hi: "+hi);
+      // System.out.println("-----NEW CALL-----");
+      // System.out.println("lo: "+lo+", hi: "+hi);
       mergesort(temp,data,lo,(hi+lo)/2);
       mergesort(temp,data,(lo+hi)/2+1,hi);
-      merge(data,temp,lo,(hi+lo)/2,(hi+lo)/2+1,hi);
+      merge(temp,data,lo,(hi+lo)/2,(hi+lo)/2+1,hi);
       // System.out.println();
     }
   }
