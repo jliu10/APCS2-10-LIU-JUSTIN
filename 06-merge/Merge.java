@@ -43,10 +43,15 @@ public class Merge{
   public static void mergesort(int[] data){
     int[] t=new int[data.length];
     mergesort(data,t,0,data.length-1);
+    // if(data.length%2>0) for(int i=0; i<data.length; i++) data[i]=t[i];
   }
 
   public static void mergesort(int[] data, int[] temp, int lo, int hi){
-
+    if(data.length>1){
+      mergesort(temp,data,lo,hi/2);
+      mergesort(temp,data,hi/2+1,hi);
+      merge(data,temp,lo,hi/2,hi/2+1,hi);
+    }
   }
 
 }
