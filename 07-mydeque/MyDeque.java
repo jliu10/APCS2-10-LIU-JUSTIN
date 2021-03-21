@@ -7,15 +7,15 @@ public class MyDeque<E>{
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[10];
       data = d;
-      size = 10;
+      size = 0;
       start = 0;
       end = -1;
     }
     public MyDeque(int initialCapacity){
       @SuppressWarnings("unchecked")
-      E[] d = (E[])new Object[10];
+      E[] d = (E[])new Object[initialCapacity];
       data = d;
-      size = initialCapacity;
+      size = 0;
       start = 0;
       end = -1;
     }
@@ -31,13 +31,34 @@ public class MyDeque<E>{
 
     */
 
-    public int size(){ }
-    public String toString(){ }
+    public int size(){
+      return size;
+    }
+
+    public String toString(){
+      String s="";
+      return s;
+    }
+
     public void addFirst(E element){ }
+
     public void addLast(E element){ }
-    public E removeFirst(){ }
-    public E removeLast(){ }
-    public E getFirst(){ }
-    public E getLast(){ }
+
+    public E removeFirst(){
+      return data[0];
+    }
+
+    public E removeLast(){
+      return data[0];
+    }
+
+    public E getFirst(){
+      return data[0];
+    }
+
+    public E getLast(){
+      return data[0];
+    }
+
 
 }
