@@ -36,7 +36,16 @@ public class MyDeque<E>{
     }
 
     public String toString(){
-      String s="";
+      String s="{";
+      // for(int i=0; i<size-1; i++){
+      if(end!=-1){
+        for(int i=start; i!=end; i++){
+          if(i>=data.length) i=0;
+          s+=data[i]+", ";
+        }
+      }
+      if(end!=-1) s+=data[end];
+      s+="}";
       return s;
     }
 
