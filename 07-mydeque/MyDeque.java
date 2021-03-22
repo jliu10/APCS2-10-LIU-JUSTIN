@@ -80,10 +80,12 @@ public class MyDeque<E> {
       // else {
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[data.length * 10 + 1]; // + 1 in case size is 0
-      for(int i = start, n = 0; i < size; i = getNext(i), n++) {
+      for(int i = start, n = 0; n < size; i = getNext(i), n++) {
         d[n] = data[i];
       }
       data = d;
+      start = 0;
+      end = size - 1;
       // }
     }
 
@@ -105,14 +107,19 @@ public class MyDeque<E> {
     public void addLast(E element) {
       if(element == null) throw new NullPointerException("cannot add null to MyDeque");
       if(getNext(end) == start) resize();
-      if(end == data.length - 1) {
-        data[0] = element;
-        end = 0;
-      }
-      else {
-        data[end + 1] = element;
-        end = end + 1;
-      }
+      // if(end == data.length - 1) {
+      //   data[0] = element;
+      //   end = 0;
+      // }
+      // else {
+      //   data[end + 1] = element;
+      //   end = end + 1;
+      // }
+      // System.out.println("end: " + end);
+      // System.out.println("getNext(end): " + getNext(end));
+      data[getNext(end)] = element;
+      end = getNext(end);
+      // data[end] = element;
       size++;
       if(size == 1) start = end;
     }
