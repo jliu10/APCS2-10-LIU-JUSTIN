@@ -35,16 +35,24 @@ public class MyDeque<E> {
       return size;
     }
 
+    public String stringify(){
+      String s="{";
+      for(int i=0; i<data.length-1; i++) s+=data[i]+", ";
+      if(data.length>0) s+=data[data.length-1];
+      s+="}";
+      return s;
+    }
+
     public String toString() {
       String s = "{";
       if(end != -1) {
         for(int i = start - 1; i != end - 1; i++) {
-          // if(i>=data.length) i=0;
-          // s+=data[i]+", ";
-          s += data[getNext(i)] + ", ";
+           // if(i>=data.length) i=0;
+           // s+=data[i]+", ";
+           s += data[getNext(i)] + ", ";
         }
+        s += data[end];
       }
-      if(end != -1) s += data[end];
       s += "}";
       return s;
     }
@@ -92,16 +100,17 @@ public class MyDeque<E> {
 
     public void addLast(E element) {
       if(element == null) throw new NullPointerException("cannot add null to MyDeque");
-
       if(getNext(end) == start) resize();
       if(end == data.length - 1) {
         data[0] = element;
+        end = 0;
       }
       else {
         data[end + 1] = element;
+        end = end + 1;
       }
-
       size++;
+      if(size == 1) start = end;
     }
 
     public E removeFirst() {
