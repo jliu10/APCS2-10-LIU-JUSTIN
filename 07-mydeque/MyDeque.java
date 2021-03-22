@@ -36,61 +36,70 @@ public class MyDeque<E> {
     }
 
     public String toString() {
-      String s="{";
-      if(end!=-1) {
-        for(int i=start; i!=end; i++) {
-          if(i>=data.length) i=0;
-          s+=data[i]+", ";
+      String s = "{";
+      if(end != -1) {
+        for(int i = start - 1; i != end - 1; i++) {
+          // if(i>=data.length) i=0;
+          // s+=data[i]+", ";
+          s += data[getNext(i)] + ", ";
         }
       }
-      if(end!=-1) s+=data[end];
-      s+="}";
+      if(end != -1) s += data[end];
+      s += "}";
       return s;
     }
 
     private int getNext(int current) {
-      if(current==data.length-1) return 0;
-      return current+1;
+      if(current == data.length - 1) return 0;
+      return current + 1;
     }
 
     private int getPrev(int current) {
-      if(current==0) return data.length-1;
-      return current-1;
+      if(current == 0) return data.length - 1;
+      return current - 1;
     }
 
     public void resize() {
-      if(size=0) {
+      if(size == 0) {
         @SuppressWarnings("unchecked")
         E[] d = (E[])new Object[10];
-
         data = d;
       }
       else {
-
+        @SuppressWarnings("unchecked")
+        E[] d = (E[])new Object[data.length * 10];
+        for(int i = start - 1, n = 0; i < size - 1; i++, n++) {
+          d[n] = data[getNext(i)];
+        }
+        data = d;
       }
     }
 
     public void addFirst(E element) {
-
+      // throw: NullPointerException
     }
 
     public void addLast(E element) {
-
+      // throw: NullPointerException
     }
 
     public E removeFirst() {
+      // throw: NoSuchElementException
       return data[0];
     }
 
     public E removeLast() {
+      // throw: NoSuchElementException
       return data[0];
     }
 
     public E getFirst() {
+      // throw: NoSuchElementException
       return data[0];
     }
 
     public E getLast() {
+      // throw: NoSuchElementException
       return data[0];
     }
 
