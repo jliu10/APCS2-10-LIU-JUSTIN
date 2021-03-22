@@ -76,20 +76,31 @@ public class MyDeque<E> {
     }
 
     public void addFirst(E element) {
-      // throw: NullPointerException
+      if(element == null) throw new NullPointerException("cannot add null to MyDeque");
+      if(getPrev(start) == end) resize();
+      if(start == 0) {
+        data[data.length - 1] = element;
+      }
+      else {
+        data[start - 1] = element;
+      }
+      size++;
     }
 
     public void addLast(E element) {
-      // throw: NullPointerException
+      if(element == null) throw new NullPointerException("cannot add null to MyDeque");
+      size++;
     }
 
     public E removeFirst() {
       // throw: NoSuchElementException
+      size--;
       return data[0];
     }
 
     public E removeLast() {
       // throw: NoSuchElementException
+      size--;
       return data[0];
     }
 
