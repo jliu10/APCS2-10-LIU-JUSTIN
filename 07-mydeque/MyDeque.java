@@ -53,7 +53,7 @@ public class MyDeque<E> {
       return current+1;
     }
 
-    private int getPrev() {
+    private int getPrev(int current) {
       if(current==0) return data.length-1;
       return current-1;
     }
