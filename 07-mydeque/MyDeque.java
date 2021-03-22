@@ -80,11 +80,14 @@ public class MyDeque<E> {
       if(getPrev(start) == end) resize();
       if(start == 0) {
         data[data.length - 1] = element;
+        start = data.length - 1;
       }
       else {
         data[start - 1] = element;
+        start = start - 1;
       }
       size++;
+      if(size == 1) end = start;
     }
 
     public void addLast(E element) {
