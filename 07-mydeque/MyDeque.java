@@ -46,7 +46,7 @@ public class MyDeque<E> {
     public String toString() {
       String s = "{";
       if(end != -1) {
-        for(int i = start - 1; i != end - 1; i++) {
+        for(int i = start - 1; i != getPrev(end); i++) {
            // if(i>=data.length) i=0;
            // s+=data[i]+", ";
            s += data[getNext(i)] + ", ";
