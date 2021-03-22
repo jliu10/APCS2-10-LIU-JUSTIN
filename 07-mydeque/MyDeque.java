@@ -36,24 +36,24 @@ public class MyDeque<E> {
     }
 
     public String stringify(){
-      String s = "{";
+      String s = "Array.toString: {";
       for(int i = 0; i < data.length - 1; i++) s += data[i] + ", ";
       if(data.length > 0) s += data[data.length - 1];
       s += "}";
-      System.out.println("start: " + start);
-      System.out.println("end: " + end);
-      System.out.println("getPrev: " + getPrev(9));
-      System.out.println("getNext: " + getNext(98));
+      // System.out.println("start: " + start);
+      // System.out.println("end: " + end);
+      // System.out.println("getPrev: " + getPrev(9));
+      // System.out.println("getNext: " + getNext(98));
       return s;
     }
 
     public String toString() {
       String s = "{";
       if(end != -1) {
-        for(int i = start - 1; i != getPrev(end); i = getNext(i)) {
+        for(int i = start; i != end; i = getNext(i)) {
            // System.out.println("i: " + i);
            // System.out.println("getNext: " + getNext(i));
-           s += data[getNext(i)] + ", ";
+           s += data[i] + ", ";
         }
         s += data[end];
       }
@@ -72,19 +72,19 @@ public class MyDeque<E> {
     }
 
     public void resize() {
-      if(size == 0) {
-        @SuppressWarnings("unchecked")
-        E[] d = (E[])new Object[10];
-        data = d;
+      // if(size == 0) {
+      //   @SuppressWarnings("unchecked")
+      //   E[] d = (E[])new Object[10];
+      //   data = d;
+      // }
+      // else {
+      @SuppressWarnings("unchecked")
+      E[] d = (E[])new Object[data.length * 10 + 1]; // + 1 in case size is 0
+      for(int i = start, n = 0; i < size; i = getNext(i), n++) {
+        d[n] = data[i];
       }
-      else {
-        @SuppressWarnings("unchecked")
-        E[] d = (E[])new Object[data.length * 10];
-        for(int i = start - 1, n = 0; i < size - 1; i++, n++) {
-          d[n] = data[getNext(i)];
-        }
-        data = d;
-      }
+      data = d;
+      // }
     }
 
     public void addFirst(E element) {
