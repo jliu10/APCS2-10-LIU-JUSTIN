@@ -1,9 +1,9 @@
-public class MyDeque<E>{
+public class MyDeque<E> {
 
     private E[] data;
     private int size, start, end;
 
-    public MyDeque(){
+    public MyDeque() {
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[10];
       data = d;
@@ -11,7 +11,7 @@ public class MyDeque<E>{
       start = 0;
       end = -1;
     }
-    public MyDeque(int initialCapacity){
+    public MyDeque(int initialCapacity) {
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[initialCapacity];
       data = d;
@@ -31,15 +31,14 @@ public class MyDeque<E>{
 
     */
 
-    public int size(){
+    public int size() {
       return size;
     }
 
-    public String toString(){
+    public String toString() {
       String s="{";
-      // for(int i=0; i<size-1; i++){
-      if(end!=-1){
-        for(int i=start; i!=end; i++){
+      if(end!=-1) {
+        for(int i=start; i!=end; i++) {
           if(i>=data.length) i=0;
           s+=data[i]+", ";
         }
@@ -49,23 +48,49 @@ public class MyDeque<E>{
       return s;
     }
 
-    public void addFirst(E element){ }
+    private int getNext(int current) {
+      if(current==data.length-1) return 0;
+      return current+1;
+    }
 
-    public void addLast(E element){ }
+    private int getPrev() {
+      if(current==0) return data.length-1;
+      return current-1;
+    }
 
-    public E removeFirst(){
+    public void resize() {
+      if(size=0) {
+        @SuppressWarnings("unchecked")
+        E[] d = (E[])new Object[10];
+
+        data = d;
+      }
+      else {
+
+      }
+    }
+
+    public void addFirst(E element) {
+
+    }
+
+    public void addLast(E element) {
+
+    }
+
+    public E removeFirst() {
       return data[0];
     }
 
-    public E removeLast(){
+    public E removeLast() {
       return data[0];
     }
 
-    public E getFirst(){
+    public E getFirst() {
       return data[0];
     }
 
-    public E getLast(){
+    public E getLast() {
       return data[0];
     }
 
