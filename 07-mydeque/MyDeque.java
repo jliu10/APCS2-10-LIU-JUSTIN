@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MyDeque<E> {
 
     private E[] data;
@@ -103,24 +105,24 @@ public class MyDeque<E> {
     }
 
     public E removeFirst() {
-      // throw: NoSuchElementException
+      if(size == 0) throw new NoSuchElementException("cannot remove from empty set");
       size--;
       return data[0];
     }
 
     public E removeLast() {
-      // throw: NoSuchElementException
+      if(size == 0) throw new NoSuchElementException("cannot remove from empty set");
       size--;
       return data[0];
     }
 
     public E getFirst() {
-      // throw: NoSuchElementException
+      if(size == 0) throw new NoSuchElementException("cannot get from empty set");
       return data[0];
     }
 
     public E getLast() {
-      // throw: NoSuchElementException
+      if(size == 0) throw new NoSuchElementException("cannot get from empty set");
       return data[0];
     }
 
