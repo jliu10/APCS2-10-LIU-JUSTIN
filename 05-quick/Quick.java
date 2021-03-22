@@ -66,7 +66,7 @@ public class Quick{
     quicksort(data,0,data.length-1);
   }
 
-  public static void quicksort(int[] data,int lo,int hi){
+  public static void quicksort(int[] data, int lo, int hi){
     if(hi-lo>0){
       int n=partition(data,lo,hi);
       quicksort(data,lo,n-1);
