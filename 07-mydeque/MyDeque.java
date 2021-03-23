@@ -106,14 +106,24 @@ public class MyDeque<E> {
 
     public E removeFirst() {
       if(size == 0) throw new NoSuchElementException("cannot remove from empty set");
+      E element = data[start];
+      data[start] = null;
+      if(size == 1) {
+        start = 0;
+        end = -1;
+      }
+      else {
+        start = getNext(start);
+      }
       size--;
-      return data[0];
+      return element;
     }
 
     public E removeLast() {
       if(size == 0) throw new NoSuchElementException("cannot remove from empty set");
+
       size--;
-      return data[0];
+      return data[end];
     }
 
     public E getFirst() {
