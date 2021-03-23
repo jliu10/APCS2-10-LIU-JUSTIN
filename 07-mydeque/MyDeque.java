@@ -121,9 +121,17 @@ public class MyDeque<E> {
 
     public E removeLast() {
       if(size == 0) throw new NoSuchElementException("cannot remove from empty set");
-
+      E element = data[end];
+      data[end] = null;
+      if(size == 1) {
+        start = 0;
+        end = -1;
+      }
+      else {
+        end = getPrev(end);
+      }
       size--;
-      return data[end];
+      return element;
     }
 
     public E getFirst() {
