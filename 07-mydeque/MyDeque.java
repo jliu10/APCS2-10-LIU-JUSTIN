@@ -136,12 +136,12 @@ public class MyDeque<E> {
 
     public E getFirst() {
       if(size == 0) throw new NoSuchElementException("cannot get from empty set");
-      return data[0];
+      return data[start];
     }
 
     public E getLast() {
       if(size == 0) throw new NoSuchElementException("cannot get from empty set");
-      return data[0];
+      return data[end];
     }
 
 
