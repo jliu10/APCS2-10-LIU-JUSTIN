@@ -17,11 +17,12 @@ public class Calculator {
     int operators = 0;
     for(String t : tokens) if(ops.contains(t)) operators++;
     int operands = tokens.length - operators;
-    System.out.println("operators: "+operators);
-    System.out.println("operands: "+operands);
+    // System.out.println("operators: "+operators);
+    // System.out.println("operands: "+operands);
 
-    if(false) throw new IllegalArgumentException("too many operands");
-    if(false) throw new IllegalArgumentException("too few operands");
+    if(operands - operators > 1) throw new IllegalArgumentException("too many operands");
+    if(operands - operators < 1) throw new IllegalArgumentException("too few operands");
+
     return -1;
   }
 }
