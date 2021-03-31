@@ -15,44 +15,40 @@ public class Calculator {
     // converting String to list (token)
     String[] tokens = s.split(" ");
     // System.out.println(tokens[0]+" "+tokens[1]);
-    String ops = "+-/*%";
-    int operators = 0;
-    for(String t : tokens) if(ops.contains(t)) operators++;
-    int operands = tokens.length - operators;
-    // System.out.println("operators: "+operators);
-    // System.out.println("operands: "+operands);
-
-    if(operands - operators > 1) throw new IllegalArgumentException("too many operands");
-    if(operands - operators < 1) throw new IllegalArgumentException("too few operands");
 
     // using ArrayDeque to represent stack
     ArrayDeque<Double> stack = new ArrayDeque<Double>();
+    String ops = "+-*/%";
 
-    for(String t : tokens) {
-      if(t.equals("+")) {
+    for(int i = 0; i < tokens.length; i++) {
+      if(stack.size() < 1 && i > 0) throw new IllegalArgumentException("too few operands");
+      if(stack.size() == 1 && ops.contains(tokens[i])) throw new IllegalArgumentException("too few operands");
+
+      if(tokens[i].equals("+")) {
         stack.addLast(stack.removeLast() + stack.removeLast());
       }
-      else if(t.equals("-")) {
+      else if(tokens[i].equals("-")) {
         double p1 = stack.removeLast();
         double p2 = stack.removeLast();
         stack.addLast(p2 - p1);
       }
-      else if(t.equals("/")) {
+      else if(tokens[i].equals("*")) {
+        stack.addLast(stack.removeLast() * stack.removeLast());
+      }
+      else if(tokens[i].equals("/")) {
         double p1 = stack.removeLast();
         double p2 = stack.removeLast();
         stack.addLast(p2 / p1);
       }
-      else if(t.equals("*")) {
-        stack.addLast(stack.removeLast() * stack.removeLast());
-      }
-      else if(t.equals("%")) {
+      else if(tokens[i].equals("%")) {
         double p1 = stack.removeLast();
         double p2 = stack.removeLast();
         stack.addLast(p2 % p1);
       }
-      else stack.addLast(Double.parseDouble(t));
+      else stack.addLast(Double.parseDouble(tokens[i]));
     }
 
+    if(stack.size() > 1) throw new IllegalArgumentException("too many operands");
     // consider throwing exceptions during parsing the list, to save time
     // if parsed whole list, and stack has > 1 element, too many operands
     // if stack has 0 elements any time after beginning, too few operands
