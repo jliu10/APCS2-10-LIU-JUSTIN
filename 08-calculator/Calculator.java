@@ -1,4 +1,4 @@
-// import java.util.*;
+import java.util.*;
 
 public class Calculator {
 
@@ -11,6 +11,8 @@ public class Calculator {
   */
   public static double eval(String s) {
     if(s.length() == 0) throw new IllegalArgumentException("input is empty");
+
+    // converting String to list (token)
     String[] tokens = s.split(" ");
     // System.out.println(tokens[0]+" "+tokens[1]);
     String ops = "+-/*%";
@@ -23,6 +25,19 @@ public class Calculator {
     if(operands - operators > 1) throw new IllegalArgumentException("too many operands");
     if(operands - operators < 1) throw new IllegalArgumentException("too few operands");
 
-    return -1;
+    // using ArrayDeque to represent stack
+    ArrayDeque<Double> stack = new ArrayDeque<Double>();
+
+    for(String t : tokens) {
+      if(t.equals("+")) {
+        stack.addLast(stack.removeLast() + stack.removeLast());
+      }
+      else stack.addLast(Double.parseDouble(t));
+    }
+
+    // consider throwing exceptions during parsing the list, to save time
+    // if parsed whole list, and stack has > 1 element, too many operands
+    // if stack has 0 elements any time after beginning, too few operands
+    return stack.getLast();
   }
 }
