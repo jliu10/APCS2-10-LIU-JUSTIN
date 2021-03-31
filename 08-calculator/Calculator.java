@@ -32,6 +32,24 @@ public class Calculator {
       if(t.equals("+")) {
         stack.addLast(stack.removeLast() + stack.removeLast());
       }
+      else if(t.equals("-")) {
+        double p1 = stack.removeLast();
+        double p2 = stack.removeLast();
+        stack.addLast(p2 - p1);
+      }
+      else if(t.equals("/")) {
+        double p1 = stack.removeLast();
+        double p2 = stack.removeLast();
+        stack.addLast(p2 / p1);
+      }
+      else if(t.equals("*")) {
+        stack.addLast(stack.removeLast() * stack.removeLast());
+      }
+      else if(t.equals("%")) {
+        double p1 = stack.removeLast();
+        double p2 = stack.removeLast();
+        stack.addLast(p2 % p1);
+      }
       else stack.addLast(Double.parseDouble(t));
     }
 
