@@ -13,6 +13,7 @@ public class Driver {
       // testEval("");
       // testEval("11 3 - 4 + 2.5 * *");
       // testEval("11 3 - 4 2.5 *");
+      // testEval("+ 1 +");
       testEval("3 2 -");
       testEval("11 3 - 4 + 2.5 *");
       testEval("10 2.0 +");
