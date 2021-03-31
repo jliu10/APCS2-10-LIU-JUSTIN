@@ -22,7 +22,7 @@ public class Calculator {
 
     for(int i = 0; i < tokens.length; i++) {
       if(stack.size() < 1 && i > 0) throw new IllegalArgumentException("too few operands");
-      if(stack.size() == 1 && ops.contains(tokens[i])) throw new IllegalArgumentException("too few operands");
+      if(stack.size() <= 1 && ops.contains(tokens[i])) throw new IllegalArgumentException("too few operands");
 
       if(tokens[i].equals("+")) {
         stack.addLast(stack.removeLast() + stack.removeLast());
