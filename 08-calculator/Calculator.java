@@ -49,9 +49,7 @@ public class Calculator {
     }
 
     if(stack.size() > 1) throw new IllegalArgumentException("too many operands");
-    // consider throwing exceptions during parsing the list, to save time
-    // if parsed whole list, and stack has > 1 element, too many operands
-    // if stack has 0 elements any time after beginning, too few operands
+
     return stack.getLast();
   }
 }
