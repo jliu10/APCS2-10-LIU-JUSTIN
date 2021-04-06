@@ -42,10 +42,6 @@ public class MyDeque<E> {
       for(int i = 0; i < data.length - 1; i++) s += data[i] + ", ";
       if(data.length > 0) s += data[data.length - 1];
       s += "}";
-      // System.out.println("start: " + start);
-      // System.out.println("end: " + end);
-      // System.out.println("getPrev: " + getPrev(9));
-      // System.out.println("getNext: " + getNext(98));
       return s;
     }
 
@@ -53,8 +49,6 @@ public class MyDeque<E> {
       String s = "{";
       if(end != -1) {
         for(int i = start; i != end; i = getNext(i)) {
-           // System.out.println("i: " + i);
-           // System.out.println("getNext: " + getNext(i));
            s += data[i] + ", ";
         }
         s += data[end];
@@ -75,7 +69,7 @@ public class MyDeque<E> {
 
     public void resize() {
       @SuppressWarnings("unchecked")
-      E[] d = (E[])new Object[data.length * 10 + 1]; // + 1 in case size is 0
+      E[] d = (E[])new Object[data.length + 1 * 10]; // + 1 in case size is 0
       for(int i = start, n = 0; n < size; i = getNext(i), n++) {
         d[n] = data[i];
       }
@@ -96,8 +90,6 @@ public class MyDeque<E> {
     public void addLast(E element) {
       if(element == null) throw new NullPointerException("cannot add null to MyDeque");
       if(getNext(end) == start) resize();
-      // System.out.println("end: " + end);
-      // System.out.println("getNext(end): " + getNext(end));
       end = getNext(end);
       data[end] = element;
       size++;
@@ -143,6 +135,5 @@ public class MyDeque<E> {
       if(size == 0) throw new NoSuchElementException("cannot get from empty set");
       return data[end];
     }
-
 
 }
