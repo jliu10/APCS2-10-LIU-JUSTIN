@@ -68,14 +68,26 @@ public class MyDeque<E> {
     }
 
     public void resize() {
-      @SuppressWarnings("unchecked")
-      E[] d = (E[])new Object[data.length + 1 * 10]; // + 1 in case size is 0
-      for(int i = start, n = 0; n < size; i = getNext(i), n++) {
-        d[n] = data[i];
+      if(size < 1) {
+        @SuppressWarnings("unchecked")
+        E[] d = (E[])new Object[data.length + 10];
+        for(int i = start, n = 0; n < size; i = getNext(i), n++) {
+          d[n] = data[i];
+        }
+        data = d;
+        start = 0;
+        end = size - 1;
       }
-      data = d;
-      start = 0;
-      end = size - 1;
+      else {
+        @SuppressWarnings("unchecked")
+        E[] d = (E[])new Object[data.length * 2];
+        for(int i = start, n = 0; n < size; i = getNext(i), n++) {
+          d[n] = data[i];
+        }
+        data = d;
+        start = 0;
+        end = size - 1;
+      }
     }
 
     public void addFirst(E element) {
