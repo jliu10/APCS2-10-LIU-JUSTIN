@@ -1,6 +1,7 @@
 public class Driver2{
 
   public static void main(String[] args){
+    // syntax: java Driver2 <numRows> <numCols> <startRow> <startCol>
     int r=0;
     int c=0;
     int sr=1;
