@@ -53,11 +53,23 @@ public class BurnTrees {
 
     // create temp array to use as reference when modifying map
     int[][] temp = new int[rows][cols];
-    for(int i = 0; i < rows; i++) for(int j = 0; j < cols; j++){
+    for(int i = 0; i < rows; i++) for(int j = 0; j < cols; j++) {
       temp[i][j] = map[i][j];
     }
 
-    // 
+    // burning map
+    for(int r = 0; r < rows; r++) for(int c = 0; c < cols; c++) {
+      // turning fire to ash
+      if(temp[r][c] == FIRE) map[r][c] = ASH;
+      // turning trees to fire
+      else if(temp[r][c] == TREE) {
+        // checking bounds first
+        if(r > 0 && temp[r - 1][c] == FIRE) map[r][c] = FIRE;
+        if(c > 0 && temp[r][c - 1] == FIRE) map[r][c] = FIRE;
+        if(r < rows - 1 && temp[r + 1][c] == FIRE) map[r][c] = FIRE;
+        if(c < cols - 1 && temp[r][c + 1] == FIRE) map[r][c] = FIRE;
+      }
+    }
 
   }
 
