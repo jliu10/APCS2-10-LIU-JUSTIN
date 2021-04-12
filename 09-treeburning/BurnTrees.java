@@ -37,6 +37,8 @@ public class BurnTrees {
    */
   public boolean done() {
     //YOU MUST IMPLEMENT THIS
+    // if no there are no fires?
+    return false;
   }
 
 
@@ -46,7 +48,17 @@ public class BurnTrees {
    */
   public void tick() {
     ticks++;
-    //YOU MUST IMPLEMENT THIS
+    int rows = map.length;
+    int cols = map[0].length;
+
+    // create temp array to use as reference when modifying map
+    int[][] temp = new int[rows][cols];
+    for(int i = 0; i < rows; i++) for(int j = 0; j < cols; j++){
+      temp[i][j] = map[i][j];
+    }
+
+    // 
+
   }
 
   /*
