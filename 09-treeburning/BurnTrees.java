@@ -163,19 +163,29 @@ public class BurnTrees {
     int HEIGHT = 20;
     int DELAY = 200;
     double DENSITY = .7;
+    boolean anim = false;
     if(args.length > 1){
       WIDTH = Integer.parseInt(args[0]);
       HEIGHT = Integer.parseInt(args[1]);
       DENSITY = Double.parseDouble(args[2]);
     }
     if(args.length > 3){
-      DELAY = Integer.parseInt(args[3]);
+      anim = true;
+      if(!args[3].equals("animate")){
+        DELAY = Integer.parseInt(args[3]);
+      }
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
-
-    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
-    //System.out.println(b.outputAll());//print all screens and the final answer
+    if(!anim) {
+      long start = System.currentTimeMillis();
+      System.out.println("TICKS: "+b.run());
+      System.out.println("TIME: "+(System.currentTimeMillis()-start));
+    }
+    else {
+      System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+      //System.out.println(b.outputAll());//print all screens and the final answer
+    }
   }
 
 
