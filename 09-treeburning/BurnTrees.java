@@ -7,6 +7,7 @@ public class BurnTrees {
   private static int FIRE = 1;
   private static int ASH = 3;
   private static int SPACE = 0;
+  private Frontier front;
 
 
   /*DO NOT UPDATE THIS
@@ -23,12 +24,13 @@ public class BurnTrees {
    *If you add more instance variables you can add more here,
    *otherwise it is complete
    */
-  public BurnTrees(int width,int height, double density){
+  public BurnTrees(int width, int height, double density){
     map = new int[height][width];
     for(int r=0; r<map.length; r++ )
       for(int c=0; c<map[r].length; c++ )
         if(Math.random() < density)
            map[r][c]=2;
+    front = new Frontier();
     start();//set the left column on fire.
   }
 
