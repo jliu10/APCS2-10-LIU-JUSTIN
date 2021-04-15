@@ -8,7 +8,7 @@ public class Frontier {
    }
 
    public int size() {
-     return 0;
+     return frontier.size();
    }
 
    public void add(int[]location) {
