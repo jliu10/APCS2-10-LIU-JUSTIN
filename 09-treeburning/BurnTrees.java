@@ -58,33 +58,30 @@ public class BurnTrees {
       int c = burned[1];
       map[r][c] = ASH;
 
-      int[] newFire = new int[2];
+      // int[] newFire = new int[2];
       if(r > 0 && map[r - 1][c] == TREE) {
         map[r - 1][c] = FIRE;
-        newFire[0] = r - 1;
-        newFire[1] = c;
+        int[] newFire = new int[]{r - 1, c};
         front.add(newFire);
       }
       if(c > 0 && map[r][c - 1] == TREE) {
         map[r][c - 1] = FIRE;
-        newFire[0] = r;
-        newFire[1] = c - 1;
+        int[] newFire = new int[]{r, c - 1};
         front.add(newFire);
       }
       if(r < map.length - 1 && map[r + 1][c] == TREE) {
         map[r + 1][c] = FIRE;
-        newFire[0] = r + 1;
-        newFire[1] = c;
+        int[] newFire = new int[]{r + 1, c};
         front.add(newFire);
       }
       if(c < map[0].length - 1 && map[r][c + 1] == TREE) {
         map[r][c + 1] = FIRE;
-        newFire[0] = r;
-        newFire[1] = c + 1;
+        int[] newFire = new int[]{r, c + 1};
         front.add(newFire);
       }
       prevSize--;
     }
+    System.out.println("FRONT SIZE: "+front.size());
   }
 
   /*
@@ -164,10 +161,10 @@ public class BurnTrees {
 
   /*DO NOT UPDATE THIS*/
   public int outputAll(){
-    System.out.println(toString());
+    System.out.println(toStringColor());
     while(!done()){
       tick();
-      System.out.println(toString());
+      System.out.println(toStringColor());
     }
     return getTicks();
   }
