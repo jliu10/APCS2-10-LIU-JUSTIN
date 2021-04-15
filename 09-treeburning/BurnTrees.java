@@ -38,10 +38,7 @@ public class BurnTrees {
    *@return false if any fires are still burning, true otherwise
    */
   public boolean done() {
-    for(int i = 0; i < map.length; i++) for(int j = 0; j < map[0].length; j++) {
-      if(map[i][j] == FIRE) return false;
-    }
-    return true;
+    return front.size() == 0;
   }
 
 
