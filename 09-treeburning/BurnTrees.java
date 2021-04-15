@@ -82,6 +82,8 @@ public class BurnTrees {
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
+        int[] loc = new int[]{i,0};
+        front.add(loc);
       }
     }
   }
