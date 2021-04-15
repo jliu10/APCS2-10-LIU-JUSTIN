@@ -81,7 +81,7 @@ public class BurnTrees {
       }
       prevSize--;
     }
-    System.out.println("FRONT SIZE: "+front.size());
+    // System.out.println("FRONT SIZE: "+front.size());
   }
 
   /*
