@@ -12,10 +12,10 @@ public class Frontier {
    }
 
    public void add(int[] location) {
-     frontier.add(location);
+     frontier.addLast(location);
    }
 
    public int[] remove() {
-     return frontier.getFirst();
+     return frontier.removeFirst();
    }
 }
