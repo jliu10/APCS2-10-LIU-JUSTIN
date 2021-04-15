@@ -48,29 +48,43 @@ public class BurnTrees {
    */
   public void tick() {
     ticks++;
-    int rows = map.length;
-    int cols = map[0].length;
+    int prevSize = front.size(); // size of original frontier
+    // to distinguish new from old frontier
 
-    // create temp array to use as reference when modifying map
-    int[][] temp = new int[rows][cols];
-    for(int i = 0; i < rows; i++) for(int j = 0; j < cols; j++) {
-      temp[i][j] = map[i][j];
-    }
+    // burning trees
+    while(prevSize > 0) {
+      int[] burned = front.remove();
+      int r = burned[0];
+      int c = burned[1];
+      map[r][c] = ASH;
 
-    // burning map
-    for(int r = 0; r < rows; r++) for(int c = 0; c < cols; c++) {
-      // turning fire to ash
-      if(temp[r][c] == FIRE) map[r][c] = ASH;
-      // turning trees to fire
-      else if(temp[r][c] == TREE) {
-        // checking bounds first
-        if(r > 0 && temp[r - 1][c] == FIRE) map[r][c] = FIRE;
-        if(c > 0 && temp[r][c - 1] == FIRE) map[r][c] = FIRE;
-        if(r < rows - 1 && temp[r + 1][c] == FIRE) map[r][c] = FIRE;
-        if(c < cols - 1 && temp[r][c + 1] == FIRE) map[r][c] = FIRE;
+      int[] newFire = new int[2];
+      if(r > 0 && map[r - 1][c] == TREE) {
+        map[r - 1][c] = FIRE;
+        newFire[0] = r - 1;
+        newFire[1] = c;
+        front.add(newFire);
       }
+      if(c > 0 && map[r][c - 1] == TREE) {
+        map[r][c - 1] = FIRE;
+        newFire[0] = r;
+        newFire[1] = c - 1;
+        front.add(newFire);
+      }
+      if(r < map.length - 1 && map[r + 1][c] == TREE) {
+        map[r + 1][c] = FIRE;
+        newFire[0] = r + 1;
+        newFire[1] = c;
+        front.add(newFire);
+      }
+      if(c < map[0].length - 1 && map[r][c + 1] == TREE) {
+        map[r][c + 1] = FIRE;
+        newFire[0] = r;
+        newFire[1] = c + 1;
+        front.add(newFire);
+      }
+      prevSize--;
     }
-
   }
 
   /*
