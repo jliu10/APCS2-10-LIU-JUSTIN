@@ -11,8 +11,8 @@ public class Frontier {
      return frontier.size();
    }
 
-   public void add(int[]location) {
-
+   public void add(int[] location) {
+     frontier.add(location);
    }
 
    public int[] remove() {
