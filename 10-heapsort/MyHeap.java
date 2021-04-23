@@ -1,5 +1,21 @@
 public class MyHeap {
 
+  public static int log2(int n) {
+    return (int)(Math.log(n) / Math.log(2));
+  }
+
+  public static boolean isLeaf(int[] data, int size, int index) {
+    return log2(index) == log2(size);
+  }
+
+  public static int getParent(int[] data, int size, int index) {
+
+  }
+
+  public static int[] getChildren(int[] data, int size, int index) {
+
+  }
+
   public static String toString(int[] data, int size) {
     String s = "{";
     for(int i = 0; i < size - 1; i++) {
