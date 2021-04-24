@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Tester {
 
   public static void testPushDown(int[] data, int size, int index) {
@@ -21,8 +23,9 @@ public class Tester {
     try {
       int[][] arr = {{0}, {1}};
 
-      System.out.println(MyHeap.isLeaf(10, 6));
+      System.out.println(MyHeap.isLeaf(6, 5));
       System.out.println(MyHeap.getParent(6));
+      System.out.println(Arrays.toString(MyHeap.getChildren(10, 9)));
     }
     catch(IndexOutOfBoundsException e) {
 
