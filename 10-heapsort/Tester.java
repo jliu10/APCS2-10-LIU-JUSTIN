@@ -19,9 +19,10 @@ public class Tester {
 
   public static void main(String[] args) {
     try {
-      int[] arr = {0, 1};
+      int[][] arr = {{0}, {1}};
 
       System.out.println(MyHeap.isLeaf(10, 6));
+      System.out.println(MyHeap.getParent(6));
     }
     catch(IndexOutOfBoundsException e) {
 
