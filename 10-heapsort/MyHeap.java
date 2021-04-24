@@ -4,7 +4,7 @@ public class MyHeap {
     return (int)(Math.log(n) / Math.log(2));
   }
 
-  public static boolean isLeaf(int[] data, int size, int index) {
+  public static boolean isLeaf(int size, int index) {
     return log2(index + 1) == log2(size);
   }
 
