@@ -5,7 +5,7 @@ public class MyHeap {
     return (int)(Math.log(n) / Math.log(2));
   }
 
-  /* Return true if index is a leaf (last tier of heap) of a size size heap,
+  /**Return true if index is a leaf (last tier of heap) of a size size heap,
    * false otherwise.
    */
   public static boolean isLeaf(int size, int index) {
@@ -13,14 +13,15 @@ public class MyHeap {
   }
 
   // If index has a parent, return the index of the parent; return -1 otherwise.
-  public static int getParent(int[] data, int size, int index) {
-    return -1;
+  public static int getParent(int index) {
+    if(index == 0) return -1;
+    return (index - 1) / 2;
   }
 
-  /* If index has any children, return an array of their indices; return an
+  /**If index has any children, return an array of their indices; return an
    * empty array otherwise.
    */
-  public static int[] getChildren(int[] data, int size, int index) {
+  public static int[] getChildren(int size, int index) {
     int[] children = {};
     return children;
   }
