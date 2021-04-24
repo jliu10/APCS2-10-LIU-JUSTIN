@@ -1,22 +1,31 @@
 public class MyHeap {
 
+  // Calculate log base 2 of n.
   public static int log2(int n) {
     return (int)(Math.log(n) / Math.log(2));
   }
 
+  /* Return true if index is a leaf (last tier of heap) of a size size heap,
+   * false otherwise.
+   */
   public static boolean isLeaf(int size, int index) {
     return log2(index + 1) == log2(size);
   }
 
+  // If index has a parent, return the index of the parent; return -1 otherwise.
   public static int getParent(int[] data, int size, int index) {
     return -1;
   }
 
+  /* If index has any children, return an array of their indices; return an
+   * empty array otherwise.
+   */
   public static int[] getChildren(int[] data, int size, int index) {
     int[] children = {};
     return children;
   }
 
+  // Return a String representation of the array taking into account size.
   public static String toString(int[] data, int size) {
     String s = "{";
     for(int i = 0; i < size - 1; i++) {
