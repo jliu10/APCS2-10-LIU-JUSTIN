@@ -44,8 +44,15 @@ public class MyHeap {
     return s + "]";
   }
 
+  // Swap data[a] with data[b].
+  public static void swap(int[] data, int a, int b) {
+    int t = data[a];
+    data[a] = data[b];
+    data[b] = t;
+  }
+
  /*Swap the element at the provided index downward into the correct position.
-   This will swap with the larger of the child nodes provided thatchild is larger.
+   This will swap with the larger of the child nodes provided that child is larger.
    This stops when a leaf is reached, or neither child is larger.
    *@param size the number of heap elements in the data array.
            This is needed to allow a partially full array to be provided.
@@ -54,6 +61,46 @@ public class MyHeap {
   *@precondition size is between 0 and data.length inclusive.
   */
  public static void pushDown(int[] data, int size, int index) {
+   /*
+   boolean valid = false;
+   while(!isLeaf(size, index) && !valid) {
+     int[] children = getChildren(size, index);
+     if(children.length == 1) {
+       if(data[children[0]] > data[index]) {
+         swap(data, children[0], index);
+         index = children[0];
+       }
+     }
+     else {
+       // if(children[0]  && children[1] )
+     }
+     index = ;
+     //if()
+   }
+   */
+
+
+
+   if(!isLeaf(size, index)) {
+     int[] children = getChildren(size, index);
+     if(children.length == 1) {
+       if(data[children[0]] > data[index]) swap(data, children[0], index);
+     }
+     else {
+       if(data[children[0]] > data[children[1]]) {
+         if(data[children[0]] > data[index]) {
+           swap(data, children[0], index);
+           pushDown(data, size, children[0]);
+         }
+       }
+       else {
+         if(data[children[1]] > data[index]) {
+           swap(data, children[1], index);
+           pushDown(data, size, children[1]);
+         }
+       }
+     }
+   }
    System.out.println("MAKE THIS METHOD PRIVATE");
  }
 
