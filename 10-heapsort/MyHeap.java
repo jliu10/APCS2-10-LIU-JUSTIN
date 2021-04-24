@@ -37,10 +37,11 @@ public class MyHeap {
   // Return a String representation of the array taking into account size.
   public static String toString(int[] data, int size) {
     String s = "[";
-    for(int i = 0; i < size - 1; i++) {
-      s += data[i] + ", ";
+    for(int i = 0; i < data.length - 1; i++) {
+      if(i == size - 1) s += data[i] + " | ";
+      else s += data[i] + ", ";
     }
-    if(size > 0) s += data[size - 1];
+    if(size > 0) s += data[data.length - 1];
     return s + "]";
   }
 
