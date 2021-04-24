@@ -24,15 +24,14 @@ public class MyHeap {
    * empty array otherwise.
    */
   public static int[] getChildren(int size, int index) {
-    if(isLeaf(size, index)) return new int[]{};
-    if(index * 2 + 2 >= size) { // 1 child
-
+    if(isLeaf(size, index)) return new int[]{}; /* probably redundant since I
+      probably won't call this method on a leaf
+      */
+    if(index * 2 + 2 == size) { // 1 child
+      return new int[]{size - 1};
     }
-    else { // 2 children
-      // < size / 2
-    }
-    int[] children = {};
-    return children;
+    // 2 children
+    return new int[]{index * 2 + 1, index * 2 + 2};
   }
 
   // Return a String representation of the array taking into account size.
