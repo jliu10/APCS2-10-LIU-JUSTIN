@@ -61,33 +61,13 @@ public class MyHeap {
   *@precondition index is between 0 and size-1 inclusive
   *@precondition size is between 0 and data.length inclusive.
   */
- public static void pushDown(int[] data, int size, int index) {
-   /*
-   boolean valid = false;
-   while(!isLeaf(size, index) && !valid) {
-     int[] children = getChildren(size, index);
-     if(children.length == 1) {
-       if(data[children[0]] > data[index]) {
-         swap(data, children[0], index);
-         index = children[0];
-       }
-     }
-     else {
-       // if(children[0]  && children[1] )
-     }
-     index = ;
-     //if()
-   }
-   */
-
-
-
+ private static void pushDown(int[] data, int size, int index) {
    if(!isLeaf(size, index)) {
      int[] children = getChildren(size, index);
-     if(children.length == 1) {
+     if(children.length == 1) { // 1 child
        if(data[children[0]] > data[index]) swap(data, children[0], index);
      }
-     else {
+     else { // 2 children
        if(data[children[0]] > data[children[1]]) {
          if(data[children[0]] > data[index]) {
            swap(data, children[0], index);
@@ -102,7 +82,7 @@ public class MyHeap {
        }
      }
    }
-   System.out.println("MAKE THIS METHOD PRIVATE");
+   // System.out.println("MAKE THIS METHOD PRIVATE");
  }
 
  /*Reorder the provided array to be a valid heap.
