@@ -5,15 +5,16 @@ public class MyHeap {
   }
 
   public static boolean isLeaf(int[] data, int size, int index) {
-    return log2(index) == log2(size);
+    return log2(index + 1) == log2(size);
   }
 
   public static int getParent(int[] data, int size, int index) {
-
+    return -1;
   }
 
   public static int[] getChildren(int[] data, int size, int index) {
-
+    int[] children = {};
+    return children;
   }
 
   public static String toString(int[] data, int size) {
@@ -34,8 +35,8 @@ public class MyHeap {
   *@precondition index is between 0 and size-1 inclusive
   *@precondition size is between 0 and data.length inclusive.
   */
- private static void pushDown(int[] data, int size, int index) {
-
+ public static void pushDown(int[] data, int size, int index) {
+   System.out.println("MAKE THIS METHOD PRIVATE");
  }
 
  /*Reorder the provided array to be a valid heap.
