@@ -36,12 +36,12 @@ public class MyHeap {
 
   // Return a String representation of the array taking into account size.
   public static String toString(int[] data, int size) {
-    String s = "{";
+    String s = "[";
     for(int i = 0; i < size - 1; i++) {
       s += data[i] + ", ";
     }
     if(size > 0) s += data[size - 1];
-    return s + "}";
+    return s + "]";
   }
 
  /*Swap the element at the provided index downward into the correct position.
