@@ -56,6 +56,24 @@ public class Tester {
     System.out.println();
   }
 
+  public static void testHeapsort(int[] data) {
+    int size = data.length;
+    System.out.println("TESTING heapsort:");
+    System.out.print("\tdata:     ");
+    if(size <= 20) { // don't wanna print too large of an array
+      System.out.println(MyHeap.toString(data, size));
+    }
+    else System.out.println("over size 20");
+    System.out.println("\tlength: " + size);
+    MyHeap.heapsort(data);
+    System.out.print("\tnew data: ");
+    if(size <= 20) { // don't wanna print too large of an array
+      System.out.println(MyHeap.toString(data, size));
+    }
+    else System.out.println("over size 20");
+    System.out.println();
+  }
+
   public static void main(String[] args) {
     try {
       int[] arr1 = {20, 15, 8, 10, 5, 7, 6, 2, 9, 1};
@@ -76,8 +94,13 @@ public class Tester {
       // testBuildHeap(arrE);
       // testBuildHeap(arr1);
       // testBuildHeap(arrS);
-      testRemove(arr1, 10);
-      testRemove(arr2, 2);
+      // testRemove(arr1, 10);
+      // testRemove(arr2, 2);
+      testHeapsort(arr1);
+      testHeapsort(arr2);
+      testHeapsort(arr3);
+      testHeapsort(arrE);
+      testHeapsort(arrS);
 
       System.out.println("ALL METHODS SHOULD BE PRIVATE EXCEPT heapsort AND toString");
     }
