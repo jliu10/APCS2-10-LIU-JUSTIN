@@ -124,7 +124,7 @@ public class MyHeap {
   public static void heapsort(int[] data) {
     buildHeap(data);
     for(int size = data.length; size > 1; size--) {
-      remove(data, size)
+      remove(data, size);
     }
   }
 
