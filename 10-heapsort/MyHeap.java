@@ -36,7 +36,7 @@ public class MyHeap {
       if(i == size - 1) s += data[i] + " | ";
       else s += data[i] + ", ";
     }
-    if(size > 0) s += data[data.length - 1];
+    if(data.length > 0) s += data[data.length - 1];
     return s + "]";
   }
 
@@ -77,7 +77,6 @@ public class MyHeap {
          }
        }
      }
-   // System.out.println("MAKE THIS METHOD PRIVATE");
   }
 
   /**First expand the heap by adding one leaf with the new value. Then if that
@@ -112,10 +111,10 @@ public class MyHeap {
   *Then push the new root down, but not past the index that it swapped with.
   *@precondition: size is between 0 and data.length inclusive.
   */
-  private static void remove(int[] data, int size) {
+  public static void remove(int[] data, int size) {
     if(size > 0) {
       swap(data, 0, size - 1);
-      pushDown(data, size, 0);
+      pushDown(data, size - 1, 0);
     }
   }
 
