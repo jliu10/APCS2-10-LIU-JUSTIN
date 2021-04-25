@@ -56,7 +56,7 @@ public class MyHeap {
   *@precondition index is between 0 and size-1 inclusive
   *@precondition size is between 0 and data.length inclusive.
   */
-  public static void pushDown(int[] data, int size, int index) {
+  private static void pushDown(int[] data, int size, int index) {
      if(!isLeaf(size, index)) {
        int[] children = getChildren(size, index);
        if(children.length == 1) { // 1 child
@@ -98,7 +98,7 @@ public class MyHeap {
   /*Reorder the provided array to be a valid heap.
   *@param data is the array to be modified
   */
-  public static void buildHeap(int[] data) {
+  private static void buildHeap(int[] data) {
     int[] heap = new int[data.length];
     for(int size = 0; size < data.length; size++) {
       insert(heap, size, data[size]);
@@ -111,7 +111,7 @@ public class MyHeap {
   *Then push the new root down, but not past the index that it swapped with.
   *@precondition: size is between 0 and data.length inclusive.
   */
-  public static void remove(int[] data, int size) {
+  private static void remove(int[] data, int size) {
     if(size > 0) {
       swap(data, 0, size - 1);
       pushDown(data, size - 1, 0);
@@ -124,7 +124,7 @@ public class MyHeap {
   public static void heapsort(int[] data) {
     buildHeap(data);
     for(int size = data.length; size > 1; size--) {
-      remove(data, size);
+      remove(data, size)
     }
   }
 
