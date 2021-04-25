@@ -122,7 +122,10 @@ public class MyHeap {
   *@param data is the array to be sorted
   */
   public static void heapsort(int[] data) {
-
+    buildHeap(data);
+    for(int size = data.length; size > 1; size--) {
+      remove(data, size);
+    }
   }
 
 }
