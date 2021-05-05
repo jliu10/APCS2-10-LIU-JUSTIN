@@ -35,6 +35,9 @@ public class Cow {
             noStroke();
             ellipse(x - .2 * radius, y - .7 * 10, radius * .1, radius * .6);
             ellipse(x + .2 * radius, y - .7 * 10, radius * .1, radius * .6);
+            textSize(10);
+            text("dx: " + dx + "\ndy: " + dy,
+                 x + radius + 5, y);
         }
     }
 
