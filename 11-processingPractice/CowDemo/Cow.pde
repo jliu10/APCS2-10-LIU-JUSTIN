@@ -38,6 +38,7 @@ public class Cow {
     //if the mouseX and mouseY are touching this cow, change the cow somehow.
         if(dist(mouseX, mouseY, x, y) <= radius) {
             c = color(random(255),random(255),random(255));
+            selected = !selected;
         }
     }
 
