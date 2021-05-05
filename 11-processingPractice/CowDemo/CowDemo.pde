@@ -28,7 +28,8 @@ void mousePressed() {
         for(Cow c : particles) c.click();
     }
     if(mouseButton == 39) { //right button
-        particles.add(new Cow());
+        particles.add(new Cow(20+(int)(Math.random()*30), mouseX, mouseY,
+                              random(6)-3, random(6)-3));
     }
 }
 
