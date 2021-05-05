@@ -1,4 +1,5 @@
 ArrayList<Cow> particles;
+int numColliding;
 
 void setup() {
     frameRate(30);
@@ -9,14 +10,20 @@ void setup() {
 }
 
 void draw() {
+    numColliding = 0;
     background(200);
     for (Cow c : particles) {
         c.move();
+        c.collide(particles);
         c.display();
+        if(c.colliding) numColliding++;
     }
     fill(0);
     textSize(20);
-    text("FPS: "+frameRate+"\nCows: "+particles.size(),0,20);
+    text("FPS: "+frameRate+
+         "\nCows: "+particles.size() +
+         "\nCows colliding: "+numColliding,
+         0,20);
 }
 
 void mousePressed() {
@@ -34,10 +41,10 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  //Read about keyPressed() in the documentation.
-  //hint:
-  //println(keyCode);
-  if(key == 32) {
-    particles = new ArrayList<Cow>(0);
-  }
+    //Read about keyPressed() in the documentation.
+    //hint:
+    //println(keyCode);
+    if(key == 32) {
+        particles = new ArrayList<Cow>(0);
+    }
 }
