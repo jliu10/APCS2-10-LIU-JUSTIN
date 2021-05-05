@@ -12,6 +12,7 @@ public class Cow {
         this.dy = (int)(dy*100)/100.0;
         c = color(random(255),random(255),random(255));
         selected = false;
+        // colliding = false;
     }
 
     Cow() {
@@ -37,6 +38,14 @@ public class Cow {
     //if the mouseX and mouseY are touching this cow, change the cow somehow.
         if(dist(mouseX, mouseY, x, y) <= radius) {
             c = color(random(255),random(255),random(255));
+        }
+    }
+
+    void collide(ArrayList<Cow> others) {
+        others.remove(this);
+        for(int i = 0; i < others.size(); i++) {
+            Cow c = others.get(i);
+            colliding = dist(x, y, c.x, c.y) <= radius + c.radius ? true : false;
         }
     }
 
