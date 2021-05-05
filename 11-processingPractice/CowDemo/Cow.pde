@@ -11,8 +11,6 @@ public class Cow {
         this.dx = (int)(dx*100)/100.0;
         this.dy = (int)(dy*100)/100.0;
         c = color(random(255),random(255),random(255));
-        selected = false;
-        // colliding = false;
     }
 
     Cow() {
@@ -32,6 +30,12 @@ public class Cow {
         stroke(0);
         fill(c);
         ellipse(x, y, radius*2, radius*2);
+        if(selected) { // face
+            fill(0);
+            noStroke();
+            ellipse(x - .2 * radius, y - .7 * 10, radius * .1, radius * .6);
+            ellipse(x + .2 * radius, y - .7 * 10, radius * .1, radius * .6);
+        }
     }
 
     void click(){
