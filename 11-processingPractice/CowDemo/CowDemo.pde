@@ -1,5 +1,5 @@
 ArrayList<Cow> particles;
-int numColliding;
+// int numColliding;
 
 void setup() {
     frameRate(30);
@@ -10,20 +10,20 @@ void setup() {
 }
 
 void draw() {
-    numColliding = 0;
+    // numColliding = 0;
     background(200);
     for (Cow c : particles) {
         c.move();
         if(c.selected && c.colliding) c.move();
         c.collide(particles);
         c.display();
-        if(c.colliding) numColliding++;
+    //    if(c.colliding) numColliding++;
     }
     fill(0);
     textSize(20);
     text("FPS: "+frameRate+
-         "\nCows: "+particles.size() +
-         "\nCows colliding: "+numColliding,
+         "\nCows: "+particles.size(), // +
+    //     "\nCows colliding: "+numColliding,
          0,20);
 }
 
