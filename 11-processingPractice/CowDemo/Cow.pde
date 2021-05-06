@@ -28,18 +28,31 @@ public class Cow {
 
     void display() {
         // collide(particles);
-        if(colliding) fill(187, 0, 0, 100);
+        if(colliding) fill(187, 0, 0, 100); // translucent red on collision
         else fill(c);
         stroke(0);
         ellipse(x, y, radius*2, radius*2);
-        if(selected) { // face
-            fill(0);
+        if(selected) {
+            fill(0); // eyes
             noStroke();
             ellipse(x - .2 * radius, y - .7 * 10, radius * .1, radius * .6);
             ellipse(x + .2 * radius, y - .7 * 10, radius * .1, radius * .6);
-            textSize(10);
+
+            textSize(10); // velocities
             text("dx: " + dx + "\ndy: " + dy,
                  x + radius + 5, y);
+
+            noFill(); // smile
+            stroke(0);
+            beginShape();
+            curveVertex(x - .8 * radius, y);
+            curveVertex(x - .8 * radius, y);
+            curveVertex(x - .5 * radius, y + .5 * radius);
+            curveVertex(x, y + .7 * radius);
+            curveVertex(x + .5 * radius, y + .5 * radius);
+            curveVertex(x + .8 * radius, y);
+            curveVertex(x + .8 * radius, y);
+            endShape();
         }
     }
 
