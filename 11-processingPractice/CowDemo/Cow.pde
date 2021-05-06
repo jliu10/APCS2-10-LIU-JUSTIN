@@ -27,8 +27,10 @@ public class Cow {
     }
 
     void display() {
+        // collide(particles);
+        if(colliding) fill(187, 0, 0, 100);
+        else fill(c);
         stroke(0);
-        fill(c);
         ellipse(x, y, radius*2, radius*2);
         if(selected) { // face
             fill(0);
@@ -50,11 +52,14 @@ public class Cow {
     }
 
     void collide(ArrayList<Cow> others) {
-        others.remove(this);
-        for(int i = 0; i < others.size(); i++) {
-            Cow c = others.get(i);
-            colliding = dist(x, y, c.x, c.y) <= radius + c.radius ? true : false;
+        colliding = false;
+        for(Cow c : others){
+            if(c != this) {
+                // colliding = dist(x, y, c.x, c.y) <= radius + c.radius ? true : false;
+                if(dist(x, y, c.x, c.y) <= radius + c.radius) colliding = true;
+            }
         }
+
     }
 
 }
