@@ -43,8 +43,8 @@ void mousePressed() {
 void keyPressed() {
     //Read about keyPressed() in the documentation.
     //hint:
-    //println(keyCode);
-    if(key == 32) {
-        particles = new ArrayList<Cow>(0);
-    }
+    // println(keyCode);
+    if(key == 32) particles = new ArrayList<Cow>(0);
+    // if(keyCode == 84) for(Cow c : particles) c.turn(30);
+    // if(keyCode == 86) for(Cow c: particles) c.changeSpeed(1.1);
 }
