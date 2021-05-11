@@ -24,6 +24,10 @@ public class Cow {
         y += dy;
         if (x >= width - radius || x <= radius) dx *= -1;
         if (y >= height - radius || y <= radius) dy *= -1;
+        if(selected && colliding) {
+            x += dx;
+            y += dy;
+        }
     }
 
     void display() {
@@ -39,7 +43,8 @@ public class Cow {
             ellipse(x + .2 * radius, y - .7 * 10, radius * .1, radius * .6);
 
             textSize(10); // velocities
-            text("dx: " + dx + "\ndy: " + dy,
+            text("dx: " + dx + "\ndy: " + dy, // +
+                 // "\nmag: " + sqrt(pow(dx, 2) + pow(dy, 2)), // COMMENT OUT
                  x + radius + 5, y);
 
             noFill(); // smile
@@ -72,7 +77,23 @@ public class Cow {
                 if(dist(x, y, c.x, c.y) <= radius + c.radius) colliding = true;
             }
         }
+    }
 
+    /*Write a Cow method that will modify the dx and dy
+     *such that the cow will change the direction it is moving
+     *counter-clockwise by the specified angle (degrees).
+     *Test this with any of the existing cow demos. (make the cows turn 30 degrees on click or when you press a key)
+     */
+    void turn(float angle) {
+
+    }
+
+    /*Write a Cow method that will modify the dx and dy
+     *such that the cow will add dv to the magnitude of its velocity
+     *but maintain the same direction.
+     *Test this with any of the existing cow demos. (make the cows get 2 units faster on click to test)
+     */
+    void changeSpeed(float dv) {
     }
 
 }
