@@ -43,9 +43,9 @@ public class Cow {
             ellipse(x + .2 * radius, y - .7 * 10, radius * .1, radius * .6);
 
             textSize(10); // velocities
-            text("dx: " + dx + "\ndy: " + dy +
-                 "\nmag: " + sqrt(pow(dx, 2) + pow(dy, 2)) + // COMMENT OUT
-                 "\nang: " + degrees(atan2(dy, dx)),
+            text("dx: " + dx + "\ndy: " + dy, // +
+                 // "\nmag: " + sqrt(pow(dx, 2) + pow(dy, 2)) + // COMMENT OUT
+                 // "\nang: " + degrees(atan2(dy, dx)), // COMMENT OUT
                  x + radius + 5, y);
 
             noFill(); // smile
@@ -98,6 +98,11 @@ public class Cow {
      *Test this with any of the existing cow demos. (make the cows get 2 units faster on click to test)
      */
     void changeSpeed(float dv) {
+        float mag = sqrt(pow(dx, 2) + pow(dy, 2));
+        float ang = degrees(atan2(dy, dx));
+        mag += dv;
+        dy = mag * sin(radians(ang));
+        dx = mag * cos(radians(ang));
     }
 
 }
