@@ -43,8 +43,9 @@ public class Cow {
             ellipse(x + .2 * radius, y - .7 * 10, radius * .1, radius * .6);
 
             textSize(10); // velocities
-            text("dx: " + dx + "\ndy: " + dy, // +
-                 // "\nmag: " + sqrt(pow(dx, 2) + pow(dy, 2)), // COMMENT OUT
+            text("dx: " + dx + "\ndy: " + dy +
+                 "\nmag: " + sqrt(pow(dx, 2) + pow(dy, 2)) + // COMMENT OUT
+                 "\nang: " + degrees(atan2(dy, dx)),
                  x + radius + 5, y);
 
             noFill(); // smile
@@ -85,7 +86,10 @@ public class Cow {
      *Test this with any of the existing cow demos. (make the cows turn 30 degrees on click or when you press a key)
      */
     void turn(float angle) {
-
+        float mag = sqrt(pow(dx, 2) + pow(dy, 2));
+        float ang = degrees(atan2(dy, dx));
+        dy = mag * sin(radians(ang - angle));
+        dx = mag * cos(radians(ang - angle));
     }
 
     /*Write a Cow method that will modify the dx and dy
