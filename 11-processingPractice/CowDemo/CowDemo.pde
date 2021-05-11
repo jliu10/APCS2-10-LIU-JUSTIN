@@ -14,7 +14,6 @@ void draw() {
     background(200);
     for (Cow c : particles) {
         c.move();
-        if(c.selected && c.colliding) c.move();
         c.collide(particles);
         c.display();
     //    if(c.colliding) numColliding++;
