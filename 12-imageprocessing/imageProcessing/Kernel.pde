@@ -13,16 +13,18 @@ public class Kernel {
     color calcNewColor(PImage img, int x, int y) {
     //Hint: start by always returning black.
     //This will let you test your apply method right away!
-        // float r, g, b;
-        // r = red(source.get(x, y));
-        // b = blue(source.get(x, y));
-        // g = green(source.get(x, y));
-
         if(x == 0 || y == 0 || x == img.width - 1 || y == img.height - 1) {
             return 0;
         }
-        else return color(255);
-
+        float r, g, b;
+        r = g = b = 0;
+        for(int i = 0; i < 3; i++) for(int j = 0; j < 3; j++) {
+            int pix = img.get(x - 1 + i, y - 1 + j);
+            r += kernel[i][j] * red(pix);
+            g += kernel[i][j] * blue(pix);
+            b += kernel[i][j] * green(pix);
+        }
+        return color(r, g, b);
     }
 
 
