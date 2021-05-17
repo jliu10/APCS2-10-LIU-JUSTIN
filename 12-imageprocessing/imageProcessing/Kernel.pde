@@ -3,7 +3,8 @@ public class Kernel {
 
     /*Constructor takes the kernel that will be applied to the image
     This implementation only allows 3x3 kernels*/
-    public Kernel(float[][]init) {
+    public Kernel(float[][] init) {
+        kernel = init;
     }
 
     /*If part of the kernel is off of the image, return black, Otherwise
@@ -16,10 +17,12 @@ public class Kernel {
         // r = red(source.get(x, y));
         // b = blue(source.get(x, y));
         // g = green(source.get(x, y));
+
         if(x == 0 || y == 0 || x == img.width - 1 || y == img.height - 1) {
             return 0;
         }
-        else return 255;
+        else return color(255);
+
     }
 
 
