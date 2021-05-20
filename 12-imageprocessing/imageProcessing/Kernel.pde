@@ -21,8 +21,8 @@ public class Kernel {
         for(int i = 0; i < 3; i++) for(int j = 0; j < 3; j++) {
             int pix = img.get(x - 1 + i, y - 1 + j);
             r += kernel[i][j] * red(pix);
-            g += kernel[i][j] * blue(pix);
-            b += kernel[i][j] * green(pix);
+            g += kernel[i][j] * green(pix);
+            b += kernel[i][j] * blue(pix);
         }
         return color(r, g, b);
     }
